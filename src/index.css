@@ -2,13 +2,34 @@
 @import "tailwindcss";
 
 @theme {
-  /* Colores */
+  /* === Colores primarios === */
   --color-primary: #2c7777;
+  --color-primary-light: #3a9a9a;
+  --color-primary-dark: #1e5555;
+  --color-primary-10: rgba(44, 119, 119, 0.1);
+  /* === Colores secundarios === */
+  --color-secondary: #5e8787;
+  --color-secondary-container: #e8f0f0;
+  /* === Superficies === */
+  --color-background: #f8fafa;
   --color-background-light: #fcfcfd;
   --color-background-dark: #212c2c;
-
-  /* Fuente */
+  /* === Superficies oscuras (alias) === */
+  --color-surface: #ffffff;
+  --color-on-surface: #1a1a1a;
+  --color-on-surface-variant: #6b7280;
+  /* === Semánticos === */
+  --color-success: #10b981;
+  --color-warning: #f59e0b;
+  --color-error: #ef4444;
+  /* === Bordes === */
+  --color-outline: #d1d5db;
+  --color-outline-variant: #e5e7eb;
+  /* === Tipografía === */
   --font-display: "Manrope", sans-serif;
+  --font-body: "Inter", sans-serif;
+  /* === Sombras === */
+  --shadow-card: 0 1px 3px rgba(0, 0, 0, 0.1);
 }
 
 @layer components {
