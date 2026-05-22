@@ -1,0 +1,63 @@
+# SDD Configuration — proyecto-reservas
+# Generated: 2026-05-22
+# Mode: openspec
+
+context:
+  name: proyecto-reservas
+  description: >
+    Sistema de gestión de reparaciones para un taller técnico. CRUD de
+    reparaciones, clientes, productos, con autenticación simple (JWT via
+    localStorage) y panel privado. Frontend React 19 + Zustand, backend
+    mockeado con JSON server (server/db.json).
+  stack:
+    - React 19 + TypeScript 5.9
+    - Vite 7 + @vitejs/plugin-react
+    - Tailwind CSS 4 (PostCSS + @tailwindcss/vite)
+    - Zustand 5 (state management)
+    - React Router DOM 7
+    - React Hook Form 7 + Zod 4 (validación)
+    - Lucide React (iconos)
+    - ESLint 9 (flat config, typescript-eslint)
+    - JSON server mock (server/db.json)
+
+testing:
+  strict_tdd: false
+  reason: >
+    No test runner detected. package.json has no vitest, jest, playwright,
+    cypress, or any testing dependency. Tests cannot run — TDD is not
+    possible until a test runner is installed.
+  runner: null
+  unit: false
+  integration: false
+  e2e: false
+  coverage: false
+  linter:
+    tool: ESLint 9
+    command: npm run lint
+  type_checker:
+    tool: TypeScript 5.9 (tsc)
+    command: npx tsc -b
+  formatter: null
+
+phases:
+  propose:
+    required: true
+    context: intent, scope, approach
+  spec:
+    required: true
+    context: requirements, scenarios
+  design:
+    required: true
+    context: architecture, approach
+  tasks:
+    required: true
+    context: implementation tasks
+  apply:
+    required: true
+    context: implementation
+  verify:
+    required: false
+    context: run tests (not available — no test runner)
+  archive:
+    required: true
+    context: sync delta specs

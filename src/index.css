@@ -1,0 +1,42 @@
+/* Tailwind CSS v4 imports */
+@import "tailwindcss";
+
+@theme {
+  /* Colores */
+  --color-primary: #2c7777;
+  --color-background-light: #fcfcfd;
+  --color-background-dark: #212c2c;
+
+  /* Fuente */
+  --font-display: "Manrope", sans-serif;
+}
+
+@layer components {
+  .custom-scrollbar::-webkit-scrollbar {
+    width: 4px;
+    height: 4px;
+  }
+  .custom-scrollbar::-webkit-scrollbar-thumb {
+    background: #2c7777;
+    border-radius: 10px;
+  }
+  @media (max-width: 1023px) {
+    .desktop-sidebar {
+      display: none;
+    }
+    .mobile-bottom-nav {
+      display: flex;
+    }
+    .fab-button {
+      display: flex;
+    }
+  }
+  @media (min-width: 1024px) {
+    .mobile-bottom-nav {
+      display: none;
+    }
+    .fab-button {
+      display: none;
+    }
+  }
+}
