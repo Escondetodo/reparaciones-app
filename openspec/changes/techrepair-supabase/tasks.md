@@ -127,7 +127,9 @@ La app debe verse igual que antes. Si algún color cambió, avisame y lo corregi
 
 ---
 
-## Task 3: Limpiar archivos muertos
+## Task 3: Limpiar archivos muertos - [x] Completado
+
+> Nota: `src/pages/` y `src/public/` no estaban trackeadas en git (carpetas vacías), se eliminaron con `Remove-Item`.
 
 **Archivos:** `src/pages/`, `src/public/`, `src/routes/PrivateRoutes.tsx`, `src/AppHookCoinainer.tsx`, `server/db.json`
 
