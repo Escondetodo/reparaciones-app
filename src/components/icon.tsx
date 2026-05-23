@@ -93,7 +93,7 @@ const Icon = ({ name, className, ...props }: IconProps) => {
 
   if (!LucideIcon) return null;
 
-  return <LucideIcon className={clsx(className)} {...props} />;
+  return <LucideIcon aria-hidden="true" className={clsx(className)} {...props} />;
 };
 
 export default Icon;

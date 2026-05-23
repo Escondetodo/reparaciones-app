@@ -315,7 +315,7 @@ MIT
 
 ---
 
-## Task 7: Accesibilidad
+## Task 7: Accesibilidad - [x] Completado
 
 **Archivos:** varios componentes en `src/components/`
 

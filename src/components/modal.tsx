@@ -2,7 +2,7 @@ import Icon, { type IconName } from "./icon";
 import { createPortal } from "react-dom";
 import Text from "./text";
 import Button from "./button";
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 
 interface ModalProps {
   icon?: IconName;
@@ -16,12 +16,22 @@ interface ModalProps {
 //ver porque si le pongo ? a icon da error
 
 const Modal = ({ icon, title, description, actions, onClose }: ModalProps) => {
+  const modalRef = useRef<HTMLDivElement>(null);
+
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === "Escape" && onClose) {
         onClose();
       }
     };
+
+    // Focus al abrir — va al primer botón (el de cerrar)
+    requestAnimationFrame(() => {
+      const firstFocusable = modalRef.current?.querySelector<HTMLElement>(
+        "button, [href], input, select, textarea, [tabindex]:not([tabindex='-1'])",
+      );
+      firstFocusable?.focus();
+    });
 
     // Escuchamos el teclado en todo el documento
     document.addEventListener("keydown", handleKeyDown);
@@ -36,6 +46,7 @@ const Modal = ({ icon, title, description, actions, onClose }: ModalProps) => {
 
   return createPortal(
     <div
+      ref={modalRef}
       aria-labelledby="modal-title"
       aria-describedby="modal-description"
       role="dialog"

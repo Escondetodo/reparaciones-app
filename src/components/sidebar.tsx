@@ -8,7 +8,7 @@ interface PaginationProps {
 
 const Pagination = ({ className }: PaginationProps) => {
   return (
-    <aside className="desktop-sidebar w-64 border-r border-b border-outline dark:border-background-dark bg-surface dark:bg-background-dark flex-col hidden lg:flex">
+    <aside role="navigation" aria-label="Menú de administración" className="desktop-sidebar w-64 border-r border-b border-outline dark:border-background-dark bg-surface dark:bg-background-dark flex-col hidden lg:flex">
       <div className="p-6 flex items-center gap-3">
         <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center text-primary">
           <Icon name="Hammer" size={24} />

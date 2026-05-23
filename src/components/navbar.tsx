@@ -13,7 +13,7 @@ const links: { label: string; href: string }[] = [
 
 const Navbar = ({ className }: NavbarProps) => {
   return (
-    <nav className={clsx("hidden md:flex items-center gap-8", className)}>
+    <nav aria-label="Navegación principal" className={clsx("hidden md:flex items-center gap-8", className)}>
       {links.map((link) => (
         <Link
           key={link.label}

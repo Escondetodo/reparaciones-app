@@ -15,6 +15,9 @@ interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   variant?: ButtonVariant;
   size?: ButtonSize;
 
+  // Accesibilidad
+  ariaLabel?: string;
+
   // Estado
   disabled?: boolean;
   fullWidth?: boolean;
@@ -54,6 +57,7 @@ const Button = ({
   size = "md",
   disabled = false,
   fullWidth = false,
+  ariaLabel,
   className,
   ...props
 }: ButtonProps) => {
@@ -64,6 +68,7 @@ const Button = ({
       type={type}
       onClick={onClick}
       disabled={disabled}
+      aria-label={ariaLabel || (!children ? icon : undefined)}
       className={clsx(
         // base
         "inline-flex items-center justify-center rounded-lg font-medium transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2",
