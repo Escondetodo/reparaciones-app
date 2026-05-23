@@ -98,7 +98,7 @@ const EditRepairProduct = () => {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           <div className="md:col-span-1 space-y-6">
             {/* <!-- Status Selection Section --> */}
-            <section className="bg-white dark:bg-[#2a3636] p-6 rounded-xl border border-[#eaf0f0] dark:border-[#3a4a4a] shadow-sm transition-transform">
+            <section className="bg-white dark:bg-[#2a3636] p-6 rounded-xl border border-secondary-container dark:border-[#3a4a4a] shadow-sm transition-transform">
               <label className="block font-label text-[11px] font-bold uppercase tracking-wider text-primary mb-4">
                 Estado de la Reparación
               </label>
@@ -125,7 +125,7 @@ const EditRepairProduct = () => {
               </div>
             </section>
             {/* <!-- Budget Section --> */}
-            <CardList className="bg-white dark:bg-[#2a3636] p-6 rounded-xl border border-[#eaf0f0] dark:border-[#3a4a4a] shadow-sm">
+            <CardList className="bg-white dark:bg-[#2a3636] p-6 rounded-xl border border-secondary-container dark:border-[#3a4a4a] shadow-sm">
               <div className="flex flex-col  gap-2 w-full">
                 <Text
                   as="h3"
@@ -160,7 +160,7 @@ const EditRepairProduct = () => {
             <section className="bg-surface-container-lowest rounded-xl shadow-[0_4px_20px_rgba(0,148,136,0.04)] mb-8">
               <CardInfo>
                 <CardInfo.Header>
-                  <Icon name="User" className="text-[#00685f]" size={24} />
+                  <Icon name="User" className="text-primary-dark" size={24} />
                   <Text
                     as="h3"
                     size="lg"

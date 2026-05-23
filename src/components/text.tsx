@@ -10,7 +10,12 @@ const colors = {
   "text-red-500": "text-red-500",
   "text-teal-600": "text-teal-600",
   "text-primary": "text-primary",
+  "text-primary-dark": "text-primary-dark",
   "text-white": "text-white",
+  "text-on-surface": "text-on-surface",
+  "text-on-surface-variant": "text-on-surface-variant",
+  "text-accent": "text-accent",
+  "text-secondary": "text-secondary",
 };
 export type ColorText = keyof typeof colors;
 

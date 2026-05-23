@@ -15,7 +15,7 @@ export default function StateLine({ state }: StateLineProps) {
       <div className="relative w-full mt-6">
         <div
           className={clsx(
-            "absolute top-5 left-0 right-0 h-0.5 bg-[#e2e8f0] z-0",
+            "absolute top-5 left-0 right-0 h-0.5 bg-outline-variant z-0",
             state === "proceso" && "w-1/2 bg-emerald-800",
             state === "finalizado" && "w-full bg-emerald-800",
           )}

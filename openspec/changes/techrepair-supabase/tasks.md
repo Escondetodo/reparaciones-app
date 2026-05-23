@@ -33,7 +33,7 @@
 
 ---
 
-## Task 2: Tailwind v4 Design Tokens
+## Task 2: Tailwind v4 Design Tokens - [x] Completado
 
 **Archivos:** `src/index.css` (editar), `tailwind.config.js` (eliminar)
 

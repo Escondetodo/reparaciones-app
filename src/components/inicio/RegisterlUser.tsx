@@ -12,7 +12,7 @@ const Login = () => {
         {/* <!-- Branding Header --> */}
         <div className="text-center mb-10">
           <div className="inline-flex items-center justify-center p-3 bg-secondary-container rounded-full mb-4">
-            <div className="flex items-center justify-center w-14 h-14 bg-[#00685f] rounded-lg shadow-md shadow-black/20">
+            <div className="flex items-center justify-center w-14 h-14 bg-primary-dark rounded-lg shadow-md shadow-black/20">
               <Icon name="Wrench" className="text-white text-4xl" />
             </div>
           </div>

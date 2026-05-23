@@ -42,7 +42,7 @@ const Input = ({
       )}
       <div
         className={clsx(
-          "flex items-center justify-start w-full rounded-lg border border-[#d5e2e2] dark:border-[#3a4a4a] h-14 py-2 px-3",
+          "flex items-center justify-start w-full rounded-lg border border-outline-variant dark:border-[#3a4a4a] h-14 py-2 px-3",
           "focus-within:border-primary focus-within:ring-2 focus-within:ring-primary/50 placeholder:text-slate-500 transition-all",
           "bg-slate-100 dark:bg-slate-800",
           { "border-red-500 focus-within:ring-red-500/50 ": error },

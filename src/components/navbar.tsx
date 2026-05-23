@@ -18,7 +18,7 @@ const Navbar = ({ className }: NavbarProps) => {
         <Link
           key={link.label}
           to={link.href}
-          className="text-[#121c2a] dark:text-slate-300 hover:text-[#006a61] transition-colors"
+          className="text-on-surface dark:text-slate-300 hover:text-primary-dark transition-colors"
         >
           {link.label}
         </Link>

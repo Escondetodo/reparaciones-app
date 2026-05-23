@@ -50,7 +50,7 @@ export default function DetailRepair() {
         {/* <!-- Left Column: Status & Budget --> */}
         <div className="md:col-span-4 space-y-6">
           {/* <!-- Status Plate --> bg-surface-container-low */}
-          <section className=" bg-[#eff4ff] p-6 rounded-3xl border border-white/20">
+          <section className=" bg-secondary-container p-6 rounded-3xl border border-white/20">
             <div className="flex items-center gap-2 mb-4">
               <Icon name="Columns3Cog" className="text-primary" />
               <Text as="h3" size="md" color="text-zinc-900" fontWeight="bold">
@@ -75,7 +75,7 @@ export default function DetailRepair() {
                   <Text
                     as="span"
                     size="sm"
-                    className={clsx("text-[#121c2a]", {
+                    className={clsx("text-on-surface", {
                       "text-primary": state.value === repairById?.estado,
                     })}
                     fontWeight="bold"
@@ -126,7 +126,7 @@ export default function DetailRepair() {
                 <Icon
                   name="MonitorSmartphone"
                   size={24}
-                  className="text-[#00685f]"
+                  className="text-primary-dark"
                 />
                 <Text
                   as="h3"
@@ -170,7 +170,7 @@ export default function DetailRepair() {
             {/* Aca va el componente de detalle de cliente*/}
             <CardInfo>
               <CardInfo.Header>
-                <Icon name="User" size={24} className="text-[#00685f]" />
+                <Icon name="User" size={24} className="text-primary-dark" />
                 <Text as="h3" size="md" color="text-zinc-900" fontWeight="bold">
                   Datos del Cliente
                 </Text>

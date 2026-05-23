@@ -28,9 +28,9 @@ const CardTypeUser = ({
   return (
     <CardList
       className={clsx(
-        "flex flex-col transition-all duration-500 rounded-xl overflow-hidden p-8 border border-outline-variant/15 border-[#eff4ff]",
-        type === "User" && "bg-[#eff4ff] hover:bg-white",
-        type === "Admin" && "bg-[#121c2a] hover:bg-[#00685f]",
+        "flex flex-col transition-all duration-500 rounded-xl overflow-hidden p-8 border border-outline-variant/15 border-secondary-container",
+        type === "User" && "bg-secondary-container hover:bg-white",
+        type === "Admin" && "bg-on-surface hover:bg-primary-dark",
       )}
       onClick={onClick}
     >
@@ -39,8 +39,8 @@ const CardTypeUser = ({
           className={clsx(
             "w-14 h-14 rounded-lg flex items-center justify-center mb-6 shadow-lg shadow-black/20 group-hover:scale-110 transition-transform",
             className,
-            type === "User" && "bg-[#00685f]",
-            type === "Admin" && "bg-[#eff4ff]",
+            type === "User" && "bg-primary-dark",
+            type === "Admin" && "bg-secondary-container",
           )}
         >
           <Icon name={nameIcon} className={className} />
@@ -49,7 +49,7 @@ const CardTypeUser = ({
           className={clsx(
             "text-2xl font-bold mb-3 tracking-tight text-left",
             type === "User" && "text-[#3d4947]",
-            type === "Admin" && "text-[#eff4ff]",
+            type === "Admin" && "text-secondary-container",
           )}
         >
           {title}
@@ -58,7 +58,7 @@ const CardTypeUser = ({
           className={clsx(
             "mb-8 text-left",
             type === "User" && "text-[#3d4947]",
-            type === "Admin" && "text-[#eff4ff]",
+            type === "Admin" && "text-secondary-container",
           )}
         >
           {value}
@@ -67,8 +67,8 @@ const CardTypeUser = ({
           <div className="flex items-center gap-2">
             <span
               className={clsx(
-                type === "User" && "text-[#00685f]",
-                type === "Admin" && "text-[#89f5e7]",
+                type === "User" && "text-primary-dark",
+                type === "Admin" && "text-accent",
               )}
             >
               {ctaText}
@@ -77,8 +77,8 @@ const CardTypeUser = ({
               size={32}
               name={ctaIcon}
               className={clsx(
-                type === "User" && "text-[#00685f]",
-                type === "Admin" && "text-[#89f5e7]",
+                type === "User" && "text-primary-dark",
+                type === "Admin" && "text-accent",
               )}
             />
           </div>

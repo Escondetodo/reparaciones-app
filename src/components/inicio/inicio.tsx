@@ -11,9 +11,9 @@ const Inicio = () => {
   return (
     <div className="bg-background text-on-surface min-h-screen flex flex-col">
       {/* TopAppBar */}
-      <header className="fixed top-0 w-full z-50 bg-white dark:bg-slate-900/50  shadow-none">
+      <header className="fixed top-0 w-full z-50 bg-surface dark:bg-background-dark/50 shadow-none">
         <div className="flex justify-between items-center px-8 py-6 w-full">
-          <Text as="span" size="xl3" fontWeight="bold" color="text-teal-600">
+          <Text as="span" size="xl3" fontWeight="bold" color="text-primary">
             TechRepair
           </Text>
           <Navbar />
@@ -28,14 +28,14 @@ const Inicio = () => {
           {/*  Main Content Canvas */}
           <div className="flex flex-col items-center mb-16 space-y-4">
             <div className="inline-flex items-center justify-center p-3 bg-secondary-container rounded-full mb-2 mt-4">
-              <div className="flex items-center justify-center w-14 h-14 bg-[#00685f] rounded-lg shadow-md shadow-black/20">
+              <div className="flex items-center justify-center w-14 h-14 bg-primary-dark rounded-lg shadow-md shadow-black/20">
                 <Icon name="Wrench" className="text-white text-4xl" />
               </div>
             </div>
-            <Text as="h1" size="xl3" fontWeight="bold" color="text-teal-600">
+            <Text as="h1" size="xl3" fontWeight="bold" color="text-primary">
               Administración de Reparaciones
             </Text>
-            <Text as="span" size="md" fontWeight="normal" color="text-zinc-900">
+            <Text as="span" size="md" fontWeight="normal" color="text-on-surface">
               Bienvenido a TechRepair Administration. Selecciona tu tipo de
               acceso para continuar con la gestión técnica.
             </Text>

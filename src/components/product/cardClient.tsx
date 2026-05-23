@@ -28,8 +28,8 @@ export default function CardClient<T extends FieldValues & ClientFields>({
   return (
     <CardInfo>
       <CardInfo.Header>
-        <Icon name="User" className="text-[#00685f]" size={24} />
-        <p className="text-lg font-bold text-[#111818] dark:text-white leading-none">
+        <Icon name="User" className="text-primary-dark" size={24} />
+        <p className="text-lg font-bold text-on-surface dark:text-white leading-none">
           Informacion del cliente
         </p>
       </CardInfo.Header>

@@ -22,7 +22,7 @@ const Option = ({
   return (
     <label
       className={clsx(
-        "flex items-center p-3 rounded-lg border border-[#eaf0f0] dark:border-[#3a4a4a] shadow-sm transition-all cursor-pointer",
+        "flex items-center p-3 rounded-lg border border-secondary-container dark:border-[#3a4a4a] shadow-sm transition-all cursor-pointer",
         {
           "border-transparent bg-teal-50 text-teal-700 hover:bg-teal-100":
             isStatusBase,

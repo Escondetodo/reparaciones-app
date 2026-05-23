@@ -130,7 +130,7 @@ export default function ProductIntaketNew() {
         </div>
 
         {/* <!-- Form Actions --> */}
-        <div className="flex flex-col sm:flex-row items-center justify-end gap-4 py-6 border-t border-[#eaf0f0] dark:border-[#3a4a4a] mt-8">
+        <div className="flex flex-col sm:flex-row items-center justify-end gap-4 py-6 border-t border-secondary-container dark:border-[#3a4a4a] mt-8">
           <Button
             className="sm:w-auto"
             variant="primary"

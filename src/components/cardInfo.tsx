@@ -15,7 +15,7 @@ const CardInfo = ({ className, children }: CardInfoProps) => {
     <div className="">
       <div
         className={clsx(
-          "bg-white dark:bg-[#2a3636] p-6 rounded-xl border border-[#eaf0f0] dark:border-[#3a4a4a] shadow-sm",
+          "bg-white dark:bg-[#2a3636] p-6 rounded-xl border border-secondary-container dark:border-[#3a4a4a] shadow-sm",
           className,
         )}
       >

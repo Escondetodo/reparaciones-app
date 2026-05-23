@@ -13,8 +13,8 @@ export default function CardProduct({ control, errors }: CardProductProps) {
   return (
     <CardInfo>
       <CardInfo.Header>
-        <Icon name="MonitorSmartphone" size={24} className="text-[#00685f]" />
-        <p className="text-lg font-bold text-[#111818] dark:text-white leading-none">
+        <Icon name="MonitorSmartphone" size={24} className="text-primary-dark" />
+        <p className="text-lg font-bold text-on-surface dark:text-white leading-none">
           Informacion del producto
         </p>
       </CardInfo.Header>
@@ -48,7 +48,7 @@ export default function CardProduct({ control, errors }: CardProductProps) {
               error={errors?.precioPresupuestado}
             />
             <label className="w-full">
-              <p className="text-xs text-left font-bold uppercase tracking-wider text-[#5e8787] mb-2">
+              <p className="text-xs text-left font-bold uppercase tracking-wider text-secondary mb-2">
                 Estado
               </p>
               <div className="relative">
@@ -59,7 +59,7 @@ export default function CardProduct({ control, errors }: CardProductProps) {
                     <select
                       {...field}
                       name="estado"
-                      className="w-full rounded-lg border-[#d5e2e2] dark:border-[#3a4a4a] bg-slate-100 dark:bg-slate-800 h-14 px-4 focus:border-primary focus:ring-1 focus:ring-primary appearance-none cursor-pointer"
+                      className="w-full rounded-lg border-outline-variant dark:border-[#3a4a4a] bg-slate-100 dark:bg-slate-800 h-14 px-4 focus:border-primary focus:ring-1 focus:ring-primary appearance-none cursor-pointer"
                     >
                       <option value="analysis">Analisis</option>
                       <option value="process">En Proceso</option>
@@ -69,7 +69,7 @@ export default function CardProduct({ control, errors }: CardProductProps) {
                 />
                 <Icon
                   name="ChevronDown"
-                  className="absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none text-[#5e8787]"
+                  className="absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none text-secondary"
                 />
               </div>
             </label>
