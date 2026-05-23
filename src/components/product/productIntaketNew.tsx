@@ -6,7 +6,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import {
   type RepairFormValues,
   repairSchema,
-} from "../customForm/models/repair.model";
+} from "../../schemas/repair";
 import { userRepairsState } from "../../store/repairs";
 import CardClient from "./cardClient";
 import TextArea from "../textArea";

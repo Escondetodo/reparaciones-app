@@ -1,7 +1,7 @@
 import { type SubmitHandler, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { type LoginFormValues, loginSchema } from "./models/form.model";
-import CustomInput from "../customInput/customInput";
+import { type LoginFormValues, loginSchema } from "../../schemas/auth";
+import CustomInput from "../customInput";
 import { useState } from "react";
 import Button from "../button";
 

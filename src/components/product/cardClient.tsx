@@ -1,13 +1,13 @@
 import CardInfo from "../cardInfo";
 import Icon from "../icon";
-import CustomInput from "../customInput/customInput";
+import CustomInput from "../customInput";
 import {
   type Control,
   type FieldErrors,
   type FieldValues,
   type Path,
 } from "react-hook-form";
-import type { RepairFormValues } from "../customForm/models/repair.model";
+import type { RepairFormValues } from "../../schemas/repair";
 
 interface ClientFields {
   nombreCliente: string;

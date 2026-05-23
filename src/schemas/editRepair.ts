@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { repairSchema } from "./repair.model";
+import { repairSchema } from "./repair";
 
 export const editSchema = repairSchema.omit({
   observacionesTecnicas: true,

@@ -8,14 +8,14 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import {
   type EditFormValues,
   editSchema,
-} from "../customForm/models/edit.model";
+} from "../../schemas/editRepair";
 import Button from "../button";
 import CardList from "../cardList";
 import Text from "../text";
 import TextArea from "../textArea";
 import ModalSuccessError from "./modalSuccessError";
 import Option from "../option";
-import CustomInput from "../customInput/customInput";
+import CustomInput from "../customInput";
 import CardClient from "./cardClient";
 import CardInfo from "../cardInfo";
 import Icon from "../icon";

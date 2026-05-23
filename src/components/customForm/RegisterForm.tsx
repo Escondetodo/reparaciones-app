@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { type SubmitHandler, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import CustomInput from "../customInput/customInput";
-import { type FormValues, registerSchema } from "./models/form.model";
+import CustomInput from "../customInput";
+import { type FormValues, registerSchema } from "../../schemas/auth";
 import Button from "../button";
 
 const RegisterForm = () => {

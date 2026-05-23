@@ -5,8 +5,8 @@ import {
   type FieldValues,
   type Path,
 } from "react-hook-form";
-import Input from "../input";
-import type { IconName } from "../icon";
+import Input from "./input";
+import type { IconName } from "./icon";
 
 interface CustomInputProps<T extends FieldValues> {
   control: Control<T>;
