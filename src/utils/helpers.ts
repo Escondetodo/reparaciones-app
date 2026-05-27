@@ -21,3 +21,13 @@ export const formatNumber = (number?: number) => {
   if (number === undefined) return "0";
   return new Intl.NumberFormat("es-AR").format(number);
 };
+
+export const traducirError = (mensaje: string): string => {
+    const errores: Record<string,string> = {
+        "Invalid login credentials": "Email o contraseña incorrectos",
+        "Email not confirmed": "Email no confirmado",
+        "User already registered": "Este email ya está registrado",
+        "Rate limit exceeded": "Demasiados intentos, esperá un momento",
+    }
+    return errores[mensaje] || "Error al iniciar sesion"
+}
