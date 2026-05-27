@@ -1,9 +1,11 @@
 import { type SubmitHandler, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { type LoginFormValues, loginSchema } from "../../schemas/auth";
-import CustomInput from "../customInput";
 import { useState } from "react";
+import { useAuthStore } from "../../store/auth";
+import CustomInput from "../customInput";
 import Button from "../button";
+import Alert from "../Alert";
 
 const LoginForm = () => {
   const {
@@ -18,18 +20,17 @@ const LoginForm = () => {
     },
   });
 
-  const [isLoading, setIsLoading] = useState(false);
+  const error = useAuthStore((state) => state.error);
+  const loading = useAuthStore((state) => state.loading);
+  const login = useAuthStore((state) => state.login);
   const [showPassword, setShowPassword] = useState(false);
 
   const onSubmit: SubmitHandler<LoginFormValues> = async (data) => {
-    setIsLoading(true);
     try {
-      await new Promise((resolve) => setTimeout(resolve, 2000));
-      console.log("Login exitoso", data);
+      await login(data.email, data.password);
+      console.log("Login exitoso");
     } catch {
-      console.error("Error al iniciar sesión");
-    } finally {
-      setIsLoading(false);
+      // el error ya se manejó en el store
     }
   };
 
@@ -83,14 +84,15 @@ const LoginForm = () => {
         </label>
       </div>
       <Button
-        disabled={isLoading}
+        disabled={loading}
         size="lg"
         variant="primary"
         type="submit"
         fullWidth
       >
-        {isLoading ? "Iniciando Sesión..." : "Iniciar Sesión"}
+        {loading ? "Iniciando Sesión..." : "Iniciar Sesión"}
       </Button>
+      {error && <Alert className="mt-4" description={error} variant="danger" />}
     </form>
   );
 };

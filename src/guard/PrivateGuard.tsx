@@ -1,9 +1,9 @@
 import { Outlet, Navigate } from "react-router-dom";
-
-const isLogged = true;
+import { useAuthStore } from "../store/auth";
 
 const PrivateGuard = () => {
-  return isLogged ? <Outlet /> : <Navigate to="/" />;
+  const { user } = useAuthStore();
+  return user ? <Outlet /> : <Navigate to="/" />;
 };
 
 export default PrivateGuard;

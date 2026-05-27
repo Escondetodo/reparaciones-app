@@ -2,47 +2,12 @@ import { create } from "zustand";
 import * as api from "../services/repairsApi";
 import type { Repair } from "../services/repairsApi";
 
-// interface Product {
-//     id: number;
-//     nombreProducto: string;
-//     marcaModelo: string;
-// }
-
-// interface Client {
-//     id: number;
-//     nombreCliente: string;
-//     apellidoCliente: string;
-//     telefonoCliente: string;
-//     emailCliente: string;
-// }
-
-// export type EstadoRepair = "analisis" | "proceso" | "finalizado";
-
-// interface Repair {
-//   id: number;
-//   nombreCliente: string;
-//   apellidoCliente: string;
-//   telefonoCliente: string;
-//   emailCliente: string;
-//   nombreProducto: string;
-//   marcaModelo: string;
-//   fechaIngreso: string, // formato ISO: "2024-01-15" o con hora "2024-01-15T10:30:00"
-//   estado:EstadoRepair,
-//   problemaReportado: string | null,
-//   precioPresupuestado: string,
-//   observacionesTecnicas: string | null // útil para notas internas en cualquier etapa
-// }
-
 interface RepairsState {
-  // clients: Client [];
-  // products: Product [];
   repairs: Repair[];
   repairById: Repair | null;
   loading: boolean;
   error: string | null;
   selectedRepair: Repair | null;
-  // addProduct: (product: Omit <Product, "id">) => void;
-  // addClient: (client: Omit <Client, "id">) => void;
   addRepair: (repair: Omit<Repair, "id">) => Promise<void>;
   loadRepairs: () => Promise<void>;
   loadRepairById: (id: string) => Promise<void>;

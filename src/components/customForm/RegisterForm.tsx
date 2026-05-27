@@ -1,9 +1,10 @@
-import { useState } from "react";
 import { type SubmitHandler, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import CustomInput from "../customInput";
 import { type FormValues, registerSchema } from "../../schemas/auth";
+import { useAuthStore } from "../../store/auth";
 import Button from "../button";
+import Alert from "../Alert";
 
 const RegisterForm = () => {
   const {
@@ -20,19 +21,17 @@ const RegisterForm = () => {
     },
   });
 
-  const [isLoading, setIsLoading] = useState(false);
+  const error = useAuthStore((state) => state.error);
+  const loading = useAuthStore((state) => state.loading);
+  const register = useAuthStore((state) => state.register);
 
   const onSubmit: SubmitHandler<FormValues> = async (data) => {
-    setIsLoading(true);
     try {
-      await new Promise((resolve) => setTimeout(resolve, 2000));
-      console.log("Registro exitoso", data);
+      await register(data.email, data.password, data.nombre);
+      console.log("Registro exitoso");
     } catch {
-      console.error("Error al registrar");
-    } finally {
-      setIsLoading(false);
+      // el error ya se manejó en el store
     }
-    console.log(data);
   };
 
   return (
@@ -79,15 +78,16 @@ const RegisterForm = () => {
       </div>
       <div className="mt-4">
         <Button
-          disabled={isLoading}
+          disabled={loading}
           size="lg"
           variant="primary"
           type="submit"
           fullWidth
         >
-          {isLoading ? "Registrando..." : "Registrarse"}
+          {loading ? "Registrando..." : "Registrarse"}
         </Button>
       </div>
+      {error && <Alert className="mt-4" description={error} variant="danger" />}
     </form>
   );
 };
