@@ -34,9 +34,7 @@ const EditRepairProduct = () => {
   const { repairId } = useParams();
   const navigate = useNavigate();
 
-  console.log("stateOptions", stateOptions);
 
-  console.log("repairById", repairById);
 
   useEffect(() => {
     if (repairId) {

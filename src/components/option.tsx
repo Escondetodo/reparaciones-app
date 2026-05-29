@@ -1,6 +1,4 @@
 import clsx from "clsx";
-import Icon, { type IconName } from "./icon";
-import Input from "./input";
 
 interface OptionProps {
   name: string;

@@ -30,16 +30,12 @@ login: async(email:string,password:string)=>{
     set({loading:true, error:null})
     try{   
         const response = await supabase.auth.signInWithPassword({email,password})
-        console.log(response.error)
-        console.log("response", response)
         if(response.error){
             throw new Error(response.error.message)
         }
         const dataUser = response.data
-        console.log("datauser", dataUser)
         set({ user: dataUser.user, loading:false});
     }catch(error){
-        console.log(error)
         const messageError = error instanceof Error ?  traducirError(error.message) : "Error al iniciar sesion";
         set({error:messageError, loading:false})
         throw Error(messageError);
@@ -55,7 +51,6 @@ logout: async()=>{
         }
         set({ user: null, loading:false});
     }catch(error){
-        console.log(error)
         const messageError = error instanceof Error ? traducirError(error.message) : "Error al cerrar sesion";
         set({error:messageError, loading:false})
     }
@@ -70,14 +65,12 @@ register: async(email:string,password:string,nombre: string)=>{
                 data: {nombre}
             }
         })
-        console.log("response", response)
         if(response.error){
             throw new Error(response.error.message)
         }
         const dataUser = response.data
         set({ user: dataUser.user, loading:false});
     }catch(error){
-        console.log(error)
         const messageError = error instanceof Error ? traducirError(error.message) : "Error al registrarse";
         set({error:messageError, loading:false})
     }

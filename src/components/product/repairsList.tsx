@@ -69,11 +69,7 @@ const RepairsList = () => {
     currentPage * itemsPerPage,
   );
 
-  //console.log("total pages", totalPages);
-  console.log("repairs paginated", repairsPaginated);
   // preguntar porque no trae nada repair
-  console.log("repairs", repairs);
-  console.log("filteredRepairs", filteredRepairs);
 
   const navigateTo = useNavigate();
 
@@ -82,7 +78,6 @@ const RepairsList = () => {
   };
 
   const handleEditRepairClick = (repair: Repair) => {
-    console.log("repair handleEditRepairClick", repair);
     setSelectedRepair(repair);
     navigateTo(`/private/admin/reparacion/${repair.id}`);
   };

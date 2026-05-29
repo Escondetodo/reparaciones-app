@@ -20,7 +20,6 @@ export default function DetailRepair() {
   const { repairId } = useParams();
   const navigate = useNavigate();
 
-  console.log("repairById", repairById);
 
   useEffect(() => {
     if (repairId) {

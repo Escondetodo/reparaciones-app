@@ -18,7 +18,6 @@ const Pagination = ({ className }: PaginationProps) => {
     try {
       await logout();
     } catch (error) {
-      console.log(error);
     }
   };
 

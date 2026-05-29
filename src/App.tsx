@@ -5,7 +5,6 @@ import { supabase } from "./services/supabase";
 
 function App() {
   const checkSession = useAuthStore((state) => state.checkSession);
-  console.log("checkSession App", checkSession);
 
   useEffect(() => {
     checkSession();

@@ -16,7 +16,6 @@ const Dashbord = () => {
     onClick: undefined,
   };
 
-  console.log("pathname", pathname);
 
   return (
     <div className="flex bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 h-screen">

@@ -28,12 +28,9 @@ const LoginForm = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const navigate = useNavigate();
-  //console.log("loading LoginForm", loading);
   useEffect(() => {
     useAuthStore.setState({ error: null });
   }, []);
-  console.log("isSubmitting", isSubmitting);
-  console.log("error", error);
 
   const onSubmit: SubmitHandler<LoginFormValues> = async (data) => {
     setIsSubmitting(true);
@@ -41,7 +38,6 @@ const LoginForm = () => {
     try {
       await login(data.email, data.password);
       navigate("/private/admin");
-      console.log("Login exitoso");
     } catch {
       // el error ya lo maneja el store
     } finally {

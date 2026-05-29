@@ -1,6 +1,4 @@
-import clsx from "clsx";
-import type { ReactNode } from "react";
-import Icon, { type IconName } from "./icon";
+import Icon from "./icon";
 import Button from "./button";
 
 interface PaginationProps {
@@ -46,33 +44,21 @@ const Pagination = ({
     const rangeIni = currentPage - 1;
     const rangeFin = currentPage + 1;
 
-    //console.log("currentPage", currentPage);
-    console.log("totalPages", totalPages);
 
-    //console.log("rangeIni", rangeIni);
-    //console.log("rangeFin", rangeFin);
-    //console.log("repairsPaginated", repairsPaginated);
 
     //page.push(currentPage);
     page.push(1);
-    //console.log("page antes del if", page);
 
     if (rangeIni > 2) {
       page.push("...");
-      //console.log("Page rangeIni", page);
     }
 
     for (let i = rangeIni; i <= rangeFin; i++) {
-      //console.log("i", i);
-      //console.log("prueba de i > repairsPaginated", i > repairsPaginated);
       if (i > 1 && i < totalPages) page.push(i);
-      //console.log("page dentro del for", page);
-      //console.log("i dentro del for", i);
     }
 
     if (rangeFin < totalPages - 1) {
       page.push("...");
-      //console.log("Page rangeFin", page);
     }
 
     page.push(totalPages);
@@ -81,13 +67,9 @@ const Pagination = ({
   };
 
   const pages = getPageNUmber();
-  console.log("step 1", pages);
 
-  //console.log("currentPage", currentPage);
-  //console.log("totalPages", totalPages);
 
   const partialRepair = Math.min(itemsPerPage * currentPage, repairs);
-  // console.log("partialRepair", partialRepair);
 
   return (
     <div className="px-6 py-4 bg-slate-100 dark:bg-slate-900/50 border-t border-slate-200 dark:border-slate-800 flex items-center justify-between">

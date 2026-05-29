@@ -69,7 +69,6 @@ export const userRepairsState = create<RepairsState>((set) => ({
   updateRepair: async (id: string, repair: Omit<Repair, "id">) => {
     try {
       const updatedRepair = await api.updateRepair(id, repair);
-      //  console.log("updatedRepair", updatedRepair);
       set((state) => ({
         repairs: state.repairs.map((rps) =>
           rps.id === id ? updatedRepair : rps,

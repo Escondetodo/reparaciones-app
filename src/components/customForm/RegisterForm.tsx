@@ -28,7 +28,6 @@ const RegisterForm = () => {
   const onSubmit: SubmitHandler<FormValues> = async (data) => {
     try {
       await register(data.email, data.password, data.nombre);
-      console.log("Registro exitoso");
     } catch {
       // el error ya se manejó en el store
     }

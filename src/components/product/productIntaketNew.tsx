@@ -45,7 +45,6 @@ export default function ProductIntaketNew() {
   });
 
   const onSubmit: SubmitHandler<RepairFormValues> = (data) => {
-    console.log("date", data);
     addRepair({
       ...data,
       fechaIngreso: new Date().toISOString(),
