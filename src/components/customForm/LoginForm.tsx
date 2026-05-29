@@ -1,7 +1,7 @@
 import { type SubmitHandler, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { type LoginFormValues, loginSchema } from "../../schemas/auth";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useAuthStore } from "../../store/auth";
 import { useNavigate } from "react-router-dom";
 import CustomInput from "../customInput";
@@ -29,6 +29,11 @@ const LoginForm = () => {
 
   const navigate = useNavigate();
   //console.log("loading LoginForm", loading);
+  useEffect(() => {
+    useAuthStore.setState({ error: null });
+  }, []);
+  console.log("isSubmitting", isSubmitting);
+  console.log("error", error);
 
   const onSubmit: SubmitHandler<LoginFormValues> = async (data) => {
     setIsSubmitting(true);

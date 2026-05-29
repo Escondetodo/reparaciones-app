@@ -42,6 +42,7 @@ login: async(email:string,password:string)=>{
         console.log(error)
         const messageError = error instanceof Error ?  traducirError(error.message) : "Error al iniciar sesion";
         set({error:messageError, loading:false})
+        throw Error(messageError);
     }
     },
 
