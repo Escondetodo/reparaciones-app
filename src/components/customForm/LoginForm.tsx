@@ -3,6 +3,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { type LoginFormValues, loginSchema } from "../../schemas/auth";
 import { useState } from "react";
 import { useAuthStore } from "../../store/auth";
+import { useNavigate } from "react-router-dom";
 import CustomInput from "../customInput";
 import Button from "../button";
 import Alert from "../Alert";
@@ -21,16 +22,25 @@ const LoginForm = () => {
   });
 
   const error = useAuthStore((state) => state.error);
-  const loading = useAuthStore((state) => state.loading);
+  //const loading = useAuthStore((state) => state.loading);
   const login = useAuthStore((state) => state.login);
   const [showPassword, setShowPassword] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const navigate = useNavigate();
+  //console.log("loading LoginForm", loading);
 
   const onSubmit: SubmitHandler<LoginFormValues> = async (data) => {
+    setIsSubmitting(true);
+
     try {
       await login(data.email, data.password);
+      navigate("/private/admin");
       console.log("Login exitoso");
     } catch {
-      // el error ya se manejó en el store
+      // el error ya lo maneja el store
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
@@ -84,13 +94,13 @@ const LoginForm = () => {
         </label>
       </div>
       <Button
-        disabled={loading}
+        disabled={isSubmitting}
         size="lg"
         variant="primary"
         type="submit"
         fullWidth
       >
-        {loading ? "Iniciando Sesión..." : "Iniciar Sesión"}
+        {isSubmitting ? "Iniciando Sesión..." : "Iniciar Sesión"}
       </Button>
       {error && <Alert className="mt-4" description={error} variant="danger" />}
     </form>

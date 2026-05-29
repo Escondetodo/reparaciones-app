@@ -11,24 +11,32 @@ interface AuthState {
     login:(email:string,password:string)=>Promise<void>;
     logout:()=>Promise<void>;
     register:(email:string,password:string, nombre: string)=>Promise<void>;
+    checkSession:()=>Promise<void>;
 }
 
 export const useAuthStore = create<AuthState>((set)=>({
     user:null,
-    loading:false,
+    loading:true,
     error:null,
     sesion:null,
+
+    checkSession:async ()=>{
+       set({loading:true})
+       const response = await supabase.auth.getSession()
+       set({user:response.data.session?.user, loading:false,sesion:response.data.session})
+    },
 
 login: async(email:string,password:string)=>{
     set({loading:true, error:null})
     try{   
         const response = await supabase.auth.signInWithPassword({email,password})
         console.log(response.error)
+        console.log("response", response)
         if(response.error){
             throw new Error(response.error.message)
         }
         const dataUser = response.data
-        console.log(dataUser)
+        console.log("datauser", dataUser)
         set({ user: dataUser.user, loading:false});
     }catch(error){
         console.log(error)
