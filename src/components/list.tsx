@@ -54,6 +54,20 @@ const ListBody = ({ children, onClick }: ListBodyProps) => {
     <tr
       className="hover:bg-slate-50/50 dark:hover:bg-slate-800/50 cursor-pointer group transition-colors"
       onClick={onClick}
+      tabIndex={onClick ? 0 : undefined}
+      onKeyDown={
+        onClick
+          ? (e) => {
+              if (e.key === "Enter" || e.key === " ") {
+                e.preventDefault();
+                onClick(
+                  e as unknown as React.MouseEvent<HTMLTableRowElement>,
+                );
+              }
+            }
+          : undefined
+      }
+      role={onClick ? "button" : undefined}
     >
       {children}
     </tr>

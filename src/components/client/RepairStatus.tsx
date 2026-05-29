@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { useRepairSearch } from "../../hooks/useRepairSearch";
 import StateLine from "../stateLine";
 import CardPrice from "../product/cardPrice";
@@ -7,9 +8,11 @@ import Button from "../button";
 import Alert from "../Alert";
 import Navbar from "../navbar";
 import Icon from "../icon";
+import Modal from "../modal";
 import LabelText from "../product/LabelText";
 
 export default function RepairStatus() {
+  const [showModal, setShowModal] = useState(false);
   const {
     ticketId,
     loading,
@@ -157,7 +160,12 @@ export default function RepairStatus() {
                       titlePrecio={repairById?.precioPresupuestado ?? "0.00"}
                     />
                     <div className="space-y-4">
-                      <Button variant="secondary" size="lg" fullWidth>
+                      <Button
+                        variant="secondary"
+                        size="lg"
+                        fullWidth
+                        onClick={() => setShowModal(true)}
+                      >
                         <Icon size={22} name="MessageSquareText" />
                         Contactar Soporte
                       </Button>
@@ -181,6 +189,23 @@ export default function RepairStatus() {
           </Text>
         </div>
       </footer>
+      {showModal && (
+        <Modal
+          icon="MessageSquareText"
+          title="Contactar Soporte"
+          description="Envíanos un mensaje y te responderemos a la brevedad. Por ahora esta función está en desarrollo."
+          onClose={() => setShowModal(false)}
+          actions={
+            <Button
+              variant="primary"
+              fullWidth
+              onClick={() => setShowModal(false)}
+            >
+              Cerrar
+            </Button>
+          }
+        />
+      )}
     </div>
   );
 }
