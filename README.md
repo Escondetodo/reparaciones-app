@@ -30,7 +30,7 @@ pnpm install
 pnpm dev
 ```
 
-El servidor de mock API (json-server) está disponible en `server/` para cuando no uses Supabase:
+El servidor de mock API para datos de reparaciones (json-server) sigue disponible en `server/`:
 
 ```bash
 pnpm dlx json-server server/db.json --port 3001
