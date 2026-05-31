@@ -1,6 +1,6 @@
-import CardInfo from "../cardInfo";
-import Icon from "../icon";
-import CustomInput from "../customInput";
+import CardInfo from "../ui/cardInfo";
+import Icon from "../ui/icon";
+import CustomInput from "../ui/customInput";
 import {
   type Control,
   type FieldErrors,

@@ -1,10 +1,10 @@
 import CardTypeUser from "./cardTypeUser";
 import { useNavigate } from "react-router-dom";
-import Icon from "../icon";
-import Navbar from "../navbar";
-import Text from "../text";
-import Button from "../button";
-import Footer from "./footer";
+import Icon from "../ui/icon";
+import Navbar from "../ui/navbar";
+import Text from "../ui/text";
+import Button from "../ui/button";
+import Footer from "../layout/footer";
 
 const Inicio = () => {
   const navigate = useNavigate();

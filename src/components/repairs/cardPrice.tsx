@@ -1,6 +1,6 @@
-import CardList from "../cardList";
-import Text from "../text";
-import Icon from "../icon";
+import CardList from "../ui/cardList";
+import Text from "../ui/text";
+import Icon from "../ui/icon";
 import { formatCurrency } from "../../utils/helpers";
 
 interface CardPriceProps {

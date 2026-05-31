@@ -1,5 +1,5 @@
 import clsx from "clsx";
-import Text from "../text";
+import Text from "../ui/text";
 
 interface FooterProps {
   align?: "left" | "center" | "right";

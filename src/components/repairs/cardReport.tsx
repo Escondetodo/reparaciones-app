@@ -1,5 +1,5 @@
-import CardList from "../cardList";
-import Icon, { type IconName } from "../icon";
+import CardList from "../ui/cardList";
+import Icon, { type IconName } from "../ui/icon";
 
 interface CardReportProps {
   nameIcon: IconName;

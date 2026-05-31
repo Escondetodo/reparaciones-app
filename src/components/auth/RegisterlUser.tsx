@@ -1,8 +1,7 @@
-import Icon from "../icon";
-import Text from "../text";
-import Button from "../button";
-import LoginForm from "../customForm/LoginForm";
-import Footer from "./footer";
+import Icon from "../ui/icon";
+import Text from "../ui/text";
+import RegisterForm from "./RegisterForm";
+import Footer from "../layout/footer";
 
 const Login = () => {
   return (
@@ -49,22 +48,7 @@ const Login = () => {
               Accede al panel de control técnico
             </Text>
           </div>
-          <LoginForm />
-          {/* <!-- Secondary Actions --> */}
-          <div className="mt-8 pt-8 border-t border-outline-variant/30 text-center">
-            <Text
-              as="span"
-              size="lg"
-              fontWeight="semibold"
-              color="text-zinc-700"
-              align="center"
-            >
-              ¿No eres administrador?
-            </Text>
-            <Button icon="Search" size="md" variant="tertiary" fullWidth>
-              Client Status Check
-            </Button>
-          </div>
+          <RegisterForm />
         </div>
         {/* <!-- System Footer --> */}
         <Footer

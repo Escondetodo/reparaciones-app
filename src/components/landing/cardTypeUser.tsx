@@ -1,8 +1,7 @@
 import clsx from "clsx";
-import type { ReactNode } from "react";
-import Icon, { type IconName } from "../icon";
-import { useNavigate } from "react-router-dom";
-import CardList from "../cardList";
+import Icon, { type IconName } from "../ui/icon";
+import CardList from "../ui/cardList";
+import Text from "../ui/text";
 
 interface CardTypeUserProps {
   nameIcon: IconName;
@@ -45,34 +44,32 @@ const CardTypeUser = ({
         >
           <Icon name={nameIcon} className={className} />
         </div>
-        <h2
-          className={clsx(
-            "text-2xl font-bold mb-3 tracking-tight text-left",
-            type === "User" && "text-[#3d4947]",
-            type === "Admin" && "text-secondary-container",
-          )}
+        <Text
+          as="h2"
+          size="xl2"
+          fontWeight="bold"
+          className={clsx("mb-3 tracking-tight", type === "User" && "text-[#3d4947]", type === "Admin" && "text-secondary-container")}
+          align="left"
         >
           {title}
-        </h2>
-        <p
-          className={clsx(
-            "mb-8 text-left",
-            type === "User" && "text-[#3d4947]",
-            type === "Admin" && "text-secondary-container",
-          )}
+        </Text>
+        <Text
+          as="p"
+          size="md"
+          className={clsx("mb-8", type === "User" && "text-[#3d4947]", type === "Admin" && "text-secondary-container")}
+          align="left"
         >
           {value}
-        </p>
+        </Text>
         <div className="flex text-primary font-bold group-hover:translate-x-2 transition-transform">
           <div className="flex items-center gap-2">
-            <span
-              className={clsx(
-                type === "User" && "text-primary-dark",
-                type === "Admin" && "text-accent",
-              )}
+            <Text
+              as="span"
+              fontWeight="bold"
+              color={type === "User" ? "text-primary-dark" : "text-accent"}
             >
               {ctaText}
-            </span>
+            </Text>
             <Icon
               size={32}
               name={ctaIcon}

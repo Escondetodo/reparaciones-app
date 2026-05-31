@@ -1,10 +1,10 @@
 import { Route, BrowserRouter } from "react-router-dom";
-import Inicio from "./components/inicio/inicio";
-import Login from "./components/inicio/login";
-import RegisterlUser from "./components/inicio/RegisterlUser";
+import Inicio from "./components/landing/inicio";
+import Login from "./components/auth/login";
+import RegisterlUser from "./components/auth/RegisterlUser";
 import PrivateGuard from "./guard/PrivateGuard";
 import { PrivateRouter } from "./private/PrivateRouter";
-import { RoutesNotFound } from "./components/RoutesNotFound";
+import { RoutesNotFound } from "./components/ui/RoutesNotFound";
 import RepairStatus from "./components/client/RepairStatus";
 
 export const AppRouter = () => {

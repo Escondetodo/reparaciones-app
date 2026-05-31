@@ -1,8 +1,8 @@
 import { twMerge } from "tailwind-merge";
-import Icon from "../icon";
-import Button from "../button";
-import type { IconName } from "../icon";
-import Text, { type ColorText } from "../text";
+import Icon from "../ui/icon";
+import Button from "../ui/button";
+import type { IconName } from "../ui/icon";
+import Text, { type ColorText } from "../ui/text";
 
 interface HeaderProps {
   title: string;

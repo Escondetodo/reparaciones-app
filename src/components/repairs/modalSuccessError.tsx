@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
-import Modal from "../modal";
-import Button from "../button";
+import Modal from "../ui/modal";
+import Button from "../ui/button";
 
 interface ModalSuccessErrorProps {
   typeModal: "success" | "error" | null;

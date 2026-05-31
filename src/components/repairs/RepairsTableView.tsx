@@ -1,9 +1,9 @@
 import type { Repair } from "../../services/repairsApi";
 import { formatDate } from "../../utils/helpers";
-import CardList from "../cardList";
-import Icon from "../icon";
-import ListInfo from "../list";
-import Text from "../text";
+import CardList from "../ui/cardList";
+import Icon from "../ui/icon";
+import ListInfo from "../ui/list";
+import Text from "../ui/text";
 
 interface DesktopRepairsTableProps {
   repairsPaginated: Repair[];

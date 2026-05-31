@@ -1,4 +1,4 @@
-import { useAuthStore } from "../store/auth";
+import { useAuthStore } from "../../store/auth";
 import clsx from "clsx";
 import type { ReactNode } from "react";
 import Icon, { type IconName } from "./icon";

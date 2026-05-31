@@ -9,12 +9,12 @@ import {
 } from "../../schemas/repair";
 import { userRepairsState } from "../../store/repairs";
 import CardClient from "./cardClient";
-import TextArea from "../textArea";
+import TextArea from "../ui/textArea";
 import CardProduct from "./cardProduct";
-import CardInfo from "../cardInfo";
-import Text from "../text";
-import Button from "../button";
-import Icon from "../icon";
+import CardInfo from "../ui/cardInfo";
+import Text from "../ui/text";
+import Button from "../ui/button";
+import Icon from "../ui/icon";
 
 export default function ProductIntaketNew() {
   const loading = userRepairsState((state) => state.loading);

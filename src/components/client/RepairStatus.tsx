@@ -1,15 +1,15 @@
 import { useState } from "react";
 import { useRepairSearch } from "../../hooks/useRepairSearch";
-import StateLine from "../stateLine";
-import CardPrice from "../product/cardPrice";
-import Input from "../input";
-import Text from "../text";
-import Button from "../button";
-import Alert from "../Alert";
-import Navbar from "../navbar";
-import Icon from "../icon";
-import Modal from "../modal";
-import LabelText from "../product/LabelText";
+import StateLine from "../ui/stateLine";
+import CardPrice from "../repairs/cardPrice";
+import Input from "../ui/input";
+import Text from "../ui/text";
+import Button from "../ui/button";
+import Alert from "../ui/Alert";
+import Navbar from "../ui/navbar";
+import Icon from "../ui/icon";
+import Modal from "../ui/modal";
+import LabelText from "../repairs/LabelText";
 
 export default function RepairStatus() {
   const [showModal, setShowModal] = useState(false);

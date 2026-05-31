@@ -1,8 +1,8 @@
-import CardInfo from "../cardInfo";
-import CustomInput from "../customInput";
+import CardInfo from "../ui/cardInfo";
+import CustomInput from "../ui/customInput";
 import { type Control, type FieldErrors, Controller } from "react-hook-form";
 import type { RepairFormValues } from "../../schemas/repair";
-import Icon from "../icon";
+import Icon from "../ui/icon";
 
 interface CardProductProps {
   control: Control<RepairFormValues>;

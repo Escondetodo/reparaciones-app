@@ -1,10 +1,10 @@
 import { Route, Navigate } from "react-router-dom";
-import Dashbord from "../components/inicio/dashbord";
-import RepairsList from "../components/product/repairsList";
-import ProductIntaketNew from "../components/product/productIntaketNew";
-import DetailRepair from "../components/product/detailRepair";
-import EditRepairProduct from "../components/product/editRepairProduct";
-import { RoutesNotFound } from "../components/RoutesNotFound";
+import Dashbord from "../components/dashboard/dashbord";
+import RepairsList from "../components/repairs/repairsList";
+import ProductIntaketNew from "../components/repairs/productIntaketNew";
+import DetailRepair from "../components/repairs/detailRepair";
+import EditRepairProduct from "../components/repairs/editRepairProduct";
+import { RoutesNotFound } from "../components/ui/RoutesNotFound";
 
 export const PrivateRouter = () => {
   return (

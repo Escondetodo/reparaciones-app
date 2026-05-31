@@ -2,11 +2,11 @@ import { useState, useEffect } from "react";
 import { userRepairsState } from "../../store/repairs";
 import type { Repair } from "../../services/repairsApi";
 import { useNavigate } from "react-router-dom";
-import Input from "../input";
+import Input from "../ui/input";
 import CardReport from "./cardReport";
-import Pagination from "../pagination";
-import Button from "../button";
-import Text from "../text";
+import Pagination from "../ui/pagination";
+import Button from "../ui/button";
+import Text from "../ui/text";
 import RepairsTableView from "./RepairsTableView";
 
 const RepairsList = () => {

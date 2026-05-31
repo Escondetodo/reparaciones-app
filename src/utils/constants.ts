@@ -1,4 +1,4 @@
-import type { IconName } from "../components/icon";
+import type { IconName } from "../components/ui/icon";
 
 export const stateOptions = [
   { value: "analisis", label: "Análisis" },

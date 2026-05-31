@@ -4,11 +4,11 @@ import { userRepairsState } from "../../store/repairs";
 import { stateOptions } from "../../utils/constants";
 import { formatDate, formatCurrency } from "../../utils/helpers";
 import clsx from "clsx";
-import Button from "../button";
-import CardInfo from "../cardInfo";
-import Icon from "../icon";
-import CardList from "../cardList";
-import Text from "../text";
+import Button from "../ui/button";
+import CardInfo from "../ui/cardInfo";
+import Icon from "../ui/icon";
+import CardList from "../ui/cardList";
+import Text from "../ui/text";
 import LabelText from "./LabelText";
 
 export default function DetailRepair() {

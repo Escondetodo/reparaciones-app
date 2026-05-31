@@ -4,9 +4,9 @@ import { type LoginFormValues, loginSchema } from "../../schemas/auth";
 import { useState, useEffect } from "react";
 import { useAuthStore } from "../../store/auth";
 import { useNavigate } from "react-router-dom";
-import CustomInput from "../customInput";
-import Button from "../button";
-import Alert from "../Alert";
+import CustomInput from "../ui/customInput";
+import Button from "../ui/button";
+import Alert from "../ui/Alert";
 
 const LoginForm = () => {
   const {

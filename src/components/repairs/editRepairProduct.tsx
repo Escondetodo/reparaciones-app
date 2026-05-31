@@ -9,16 +9,16 @@ import {
   type EditFormValues,
   editSchema,
 } from "../../schemas/editRepair";
-import Button from "../button";
-import CardList from "../cardList";
-import Text from "../text";
-import TextArea from "../textArea";
+import Button from "../ui/button";
+import CardList from "../ui/cardList";
+import Text from "../ui/text";
+import TextArea from "../ui/textArea";
 import ModalSuccessError from "./modalSuccessError";
-import Option from "../option";
-import CustomInput from "../customInput";
+import Option from "../ui/option";
+import CustomInput from "../ui/customInput";
 import CardClient from "./cardClient";
-import CardInfo from "../cardInfo";
-import Icon from "../icon";
+import CardInfo from "../ui/cardInfo";
+import Icon from "../ui/icon";
 
 const EditRepairProduct = () => {
   const repairById = userRepairsState((state) => state.repairById);

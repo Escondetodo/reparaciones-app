@@ -1,4 +1,4 @@
-import Text from "../text";
+import Text from "../ui/text";
 import clsx from "clsx";
 
 interface LabelTextProps {

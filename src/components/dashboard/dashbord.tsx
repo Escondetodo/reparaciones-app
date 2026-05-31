@@ -1,7 +1,7 @@
 import { Outlet, useLocation, useNavigate } from "react-router-dom";
 import { routes } from "../../utils/constants";
-import Sidebar from "../sidebar";
-import NavbarMobile from "../navbarMobile";
+import Sidebar from "../ui/sidebar";
+import NavbarMobile from "../ui/navbarMobile";
 import Header from "./header";
 
 const Dashbord = () => {

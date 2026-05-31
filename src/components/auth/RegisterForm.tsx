@@ -1,10 +1,10 @@
 import { type SubmitHandler, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import CustomInput from "../customInput";
+import CustomInput from "../ui/customInput";
 import { type FormValues, registerSchema } from "../../schemas/auth";
 import { useAuthStore } from "../../store/auth";
-import Button from "../button";
-import Alert from "../Alert";
+import Button from "../ui/button";
+import Alert from "../ui/Alert";
 
 const RegisterForm = () => {
   const {
