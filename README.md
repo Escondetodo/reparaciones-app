@@ -1,4 +1,4 @@
-# TechRepair 🛠️
+# TechRepair
 
 Sistema de gestión de reparaciones técnicas. Aplicación web para administrar órdenes de reparación, clientes y productos en un taller técnico.
 
@@ -9,57 +9,60 @@ Sistema de gestión de reparaciones técnicas. Aplicación web para administrar 
 - **Estado:** Zustand 5
 - **Formularios:** React Hook Form 7 + Zod 4
 - **Ruteo:** React Router DOM 7
-- **Backend:** json-server (mock) → próximamente Supabase
+- **Backend:** Supabase (Auth + futura DB)
 
 ## Requisitos
 
 - Node.js 18+
-- npm
+- pnpm
 
 ## Instalación
 
 ```bash
-git clone <repo-url>
-cd proyecto-reservas
-npm install
+git clone https://github.com/Escondetodo/reparaciones-app
+cd reparaciones-app
+pnpm install
 ```
 
 ## Desarrollo
 
-En dos terminales:
+```bash
+pnpm dev
+```
+
+El servidor de mock API (json-server) está disponible en `server/` para cuando no uses Supabase:
 
 ```bash
-# Terminal 1 — mock API
-npx json-server server/db.json --port 3001
-
-# Terminal 2 — frontend
-npm run dev
+pnpm dlx json-server server/db.json --port 3001
 ```
 
 ## Scripts
 
 | Comando | Descripción |
 |---------|-------------|
-| `npm run dev` | Inicia servidor de desarrollo |
-| `npm run build` | Compila para producción |
-| `npm run lint` | Ejecuta ESLint |
-| `npm run format` | Formatea código con Prettier |
+| `pnpm dev` | Inicia servidor de desarrollo |
+| `pnpm build` | Compila para producción |
+| `pnpm lint` | Ejecuta ESLint |
+| `pnpm format` | Formatea código con Prettier |
 
 ## Estructura del proyecto
 
 ```
 src/
-├── components/     # Componentes UI
-│   ├── customForm/ # Formularios (login, registro, repairs)
-│   ├── customInput/# Inputs reutilizables
-│   ├── inicio/     # Landing, login, dashboard
-│   └── product/    # CRUD de reparaciones
-├── guard/          # Protección de rutas (PrivateGuard)
-├── hooks/          # Custom hooks
-├── private/        # Router de rutas privadas
-├── services/       # API layer (repairsApi)
-├── store/          # Estado global (Zustand)
-└── utils/          # Constantes, helpers
+├── components/
+│   ├── auth/        # LoginForm, RegisterForm, RegisterlUser
+│   ├── client/      # RepairStatus, componentes de cliente
+│   ├── dashboard/   # dashbord, header del dashboard
+│   ├── landing/     # inicio, cardTypeUser
+│   ├── layout/      # footer
+│   ├── repairs/     # CRUD de reparaciones
+│   └── ui/          # Button, Text, Input, Modal, Sidebar, Navbar, etc.
+├── guard/           # Protección de rutas (PrivateGuard)
+├── hooks/           # Custom hooks
+├── private/         # Router de rutas privadas
+├── services/        # Supabase client, API layer
+├── store/           # Estado global (Zustand — auth, repairs)
+└── utils/           # Constantes, helpers
 ```
 
 ## Licencia
