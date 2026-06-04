@@ -1,7 +1,6 @@
 import Icon, { type IconName } from "./icon";
 import { createPortal } from "react-dom";
 import Text from "./text";
-import Button from "./button";
 import { useEffect, useRef } from "react";
 
 interface ModalProps {

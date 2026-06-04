@@ -7,7 +7,7 @@ import {
   type FieldValues,
   type Path,
 } from "react-hook-form";
-import type { RepairFormValues } from "../../schemas/repair";
+
 
 interface ClientFields {
   nombreCliente: string;

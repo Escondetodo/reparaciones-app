@@ -1,7 +1,6 @@
 import clsx from "clsx";
 import Icon, { type IconName } from "./icon";
 import { NavLink } from "react-router-dom";
-import Text from "./text";
 
 interface NavbarMobileProps {
   className?: string;

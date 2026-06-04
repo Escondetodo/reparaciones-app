@@ -17,6 +17,7 @@ dist-ssr
 .env.production
 .env*.local
 .engram/
+*.tsbuildinfo
 
 # Editor directories and files
 .vscode/*

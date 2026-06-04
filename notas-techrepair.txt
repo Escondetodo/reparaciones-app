@@ -223,6 +223,189 @@ Sin tener que escribir un backend vos mismo.
   [ ] Cuando estén las rutas: descomentar los links en navbarMobile
       y activar Reportes/Ajustes en el sidebar
 
+
+
+
+╔══════════════════════════════════════════════════════════════════╗
+║                                                                  ║
+║  6. ADDREPAIR — REPAIRS.TS + REPAIRSAPI.TS (ZUSTAND + SUPABASE) ║
+║                                                                  ║
+╚══════════════════════════════════════════════════════════════════╝
+
+──────────────────────────────────────────────────────────────────
+  addRepair — la función completa
+──────────────────────────────────────────────────────────────────
+
+addRepair: async (repair: Omit<Repair, "id">) => {
+  try {
+    const { user } = useAuthStore.getState();
+    if (!user) throw new Error("No hay sesión activa");
+
+    const newRepair = await api.postRepairs({ ...repair, owner_id: user.id });
+    set((state) => ({ repairs: [...state.repairs, newRepair] }));
+  } catch (error) {
+    set({ error: "Error al agregar la reparación" });
+  }
+}
+
+──────────────────────────────────────────────────────────────────
+  Omit<Tipo, "campo"> — type utility
+──────────────────────────────────────────────────────────────────
+
+  Crea un NUEVO tipo basado en "Tipo" pero SACANDO el campo que
+  le pasás como segundo parámetro.
+
+    Repair = { id, nombreCliente, apellidoCliente, ... }
+    Omit<Repair, "id"> = { nombreCliente, apellidoCliente, ... }
+
+  ¿Por qué usarlo acá? Porque cuando CREÁS una reparación, el id
+  todavía no existe (lo genera la DB postgres). El tipo le dice a
+  TypeScript: "este parámetro es un Repair pero sin el campo id".
+
+  Si alguien pasa un objeto con id, TypeScript tira error en
+  tiempo de escritura, antes de ejecutar nada. Es protección
+  en compile-time.
+
+──────────────────────────────────────────────────────────────────
+  useAuthStore.getState() — leer estado fuera de React
+──────────────────────────────────────────────────────────────────
+
+  Normalmente usás useAuthStore() como hook dentro de un componente
+  de React, y te SUBSCRIBÍS a cambios (cada vez que cambia user,
+  el componente se re-renderiza).
+
+  Pero addRepair está en el store (repairs.ts), no en un componente.
+  No podés usar un hook ahí. Zustand expone .getState() justamente
+  para esto: leer el estado ACTUAL sin subscribirte.
+
+  Es como preguntarle al store: "che, ¿quién está logueado ahora?"
+  Te devuelve el objeto completo del estado, y hacés destructuring
+  para sacar user.
+
+  const { user } = useAuthStore.getState();
+  // user = { id: "uuid-123", email: "..." } o null
+
+──────────────────────────────────────────────────────────────────
+  El cortocircuito if (!user) throw
+──────────────────────────────────────────────────────────────────
+
+  if (!user) throw new Error("No hay sesión activa");
+
+  Si no hay nadie logueado, esto corta la ejecución inmediatamente
+  con un error claro. ¿Por qué? Porque si mandás un INSERT a Supabase
+  sin owner_id (o con owner_id = undefined), RLS lo rechaza y te
+  devuelve un error críptico de permisos.
+
+  Es mejor romper temprano con un mensaje que el usuario entienda
+  que romper tarde con un mensaje de base de datos.
+
+──────────────────────────────────────────────────────────────────
+  { ...repair, owner_id: user.id } — el spread operator
+──────────────────────────────────────────────────────────────────
+
+  El spread (...) NO es "copiar". Es "abrir y soltar".
+
+  Pensalo como una caja de herramientas:
+    repair = {
+      nombreCliente: "Juan",
+      apellidoCliente: "Pérez",
+      problemaReportado: "No enciende"
+    }
+
+  { ...repair }
+  → Agarrás la caja repair, la abrís, y soltás todo su contenido
+    en una CAJA NUEVA:
+    {
+      nombreCliente: "Juan",
+      apellidoCliente: "Pérez",
+      problemaReportado: "No enciende"
+    }
+
+  La caja original repair sigue intacta. No la mutaste.
+
+  { ...repair, owner_id: user.id }
+  → Primero soltás todo lo que tiene repair adentro,
+    después AGREGÁS owner_id al final:
+    {
+      nombreCliente: "Juan",
+      apellidoCliente: "Pérez",
+      problemaReportado: "No enciende",
+      owner_id: "uuid-123"        // esto es NUEVO
+    }
+
+  Esto evita MUTAR el objeto original (pro-inmutabilidad) y te
+  deja agregar propiedades que no estaban en el original.
+
+  Con arrays funciona IGUAL:
+    [...state.repairs, newRepair]
+  → Agarrás la caja state.repairs, soltás todas las reparaciones
+    que tiene adentro, y después agregás newRepair al final.
+    Todo en una CAJA NUEVA.
+
+──────────────────────────────────────────────────────────────────
+  set((state) => ({ repairs: [...state.repairs, newRepair] }))
+──────────────────────────────────────────────────────────────────
+
+  set() es la función de Zustand para actualizar el estado.
+  Recibe un callback con el estado actual (state) y devuelve
+  un objeto con lo que querés cambiar.
+
+  repairs: es la clave del estado que estamos actualizando.
+
+  [...state.repairs, newRepair]:
+  - state.repairs → el array que ya tenías cargado
+  - ...state.repairs → suelta CADA elemento del array viejo
+  - , newRepair → agrega el nuevo al final
+
+  ¿Por qué no usar state.repairs.push(newRepair)?
+    push MUTA el array original. React no detecta el cambio
+    porque la referencia del array sigue siendo la misma.
+    Con [...state.repairs, newRepair] creás un NUEVO array,
+    la referencia cambia, React ve el cambio y re-renderiza.
+
+──────────────────────────────────────────────────────────────────
+  Resumen visual del flujo completo
+──────────────────────────────────────────────────────────────────
+
+  1. addRepair(formData) llamado desde NewRepair (componente)
+  2. getState() → obtiene user.id del auth store
+  3. Si no hay user → corta con error ("No hay sesión activa")
+  4. { ...repair, owner_id: user.id } → arma el payload final
+  5. api.postRepairs(payload) → INSERT a Supabase
+  6. Supabase devuelve el registro con id, ticket_code, created_at
+  7. set() → agrega el nuevo registro al array local (inmutable)
+
+
 ========================================
   ESO ES TODO — ¡A DORMIR!
 ========================================
+
+1. const { user } = useAuthStore.getState()
+Sí, estás en lo correcto — pero afinalo un toque: no es para "ver si se puede hacer un insert" en el sentido de preguntarle a la DB. Es para leer quién está logueado en este mismo momento y poder mandárselo a Supabase.
+Pensalo así: cuando llamás a addRepair desde un formulario, estás en un archivo de store, no en un componente de React. No podés usar useAuthStore() como hook porque eso solo funciona dentro de un componente. getState() es la forma que tiene Zustand de leer el estado desde afuera de React.
+Es como preguntarle al store: "che, ¿quién está logueado ahora?". Te devuelve el objeto completo del estado, y vos sacás user de ahí.
+Lo del if (!user) throw... es el cortocircuito: si no hay nadie logueado, no tiene sentido ni intentar el INSERT, porque RLS lo va a rechazar igual. Mejor romper temprano con un error claro.
+
+2. { ...repair, owner_id: user.id }
+Separémoslo en dos partes:
+...repair — copia todas las propiedades del objeto repair que recibió la función. O sea, copia nombreCliente, apellidoCliente, problemaReportado, etc. Todo lo que el usuario completó en el formulario.
+owner_id: user.id — esto hace dos cosas a la vez:
+- Agrega la propiedad owner_id al objeto nuevo (no estaba en repair porque Omit<Repair, "id"> no la incluye)
+- Le asigna el valor user.id que sacamos del auth store
+El orden importa: primero se esparce repair, después se agrega owner_id. Si repair tuviera una propiedad llamada owner_id (que no tiene), el valor de la derecha pisaría al esparcido.
+Pensalo como:
+const payload = {
+  nombreCliente: repair.nombreCliente,
+  apellidoCliente: repair.apellidoCliente,
+  // ... todas las demás que vienen del form ...
+  owner_id: "el-uuid-del-user-que-esta-logueado"
+}
+¿Por qué lo mandamos a propósito? Porque la tabla repairs en Supabase tiene una columna owner_id que es FK a auth.users. Si no la mandás, queda NULL, y RLS después te va a decir "esta reparación no es tuya" y no la vas a poder ver nunca más.
+
+3. repairs: [...state.repairs, newRepair]
+Sí, es JavaScript puro. Pero no es una línea cualquera — son dos conceptos juntos:
+repairs: es la propiedad del estado de Zustand que querés actualizar. Acá le estás diciendo a Zustand: "actualizá la clave repairs del estado con este nuevo array".
+[...state.repairs, newRepair] es el spread operator sobre un array. state.repairs es el array que ya tenías cargado (con todas las reparaciones existentes). ...state.repairs suelta todos esos elementos. Después , newRepair agrega el nuevo al final.
+Si no usaras el spread y hicieras esto:
+set({ repairs: state.repairs.push(newRepair) })
+Estarías mutando el array original, y React no detectaría el cambio porque la referencia del array sigue siendo la misma. Con [...state.repairs, newRepair] creás un array nuevo con los mismos elementos más el nuevo — la referencia cambia, React ve el cambio, re-renderiza.

@@ -92,7 +92,7 @@ export default function RepairStatus() {
                     fontWeight="bold"
                     color="text-zinc-600"
                   >
-                    Orden: {repairById?.id}
+                    Orden: {repairById?.ticket_code}
                   </Text>
                 </div>
                 {repairById?.estado && (

@@ -1,6 +1,7 @@
 import { create } from "zustand";
 import * as api from "../services/repairsApi";
 import type { Repair } from "../services/repairsApi";
+import { useAuthStore } from "./auth";
 
 interface RepairsState {
   repairs: Repair[];
@@ -8,7 +9,7 @@ interface RepairsState {
   loading: boolean;
   error: string | null;
   selectedRepair: Repair | null;
-  addRepair: (repair: Omit<Repair, "id">) => Promise<void>;
+  addRepair: (repair: Omit<Repair, "id" | "owner_id" | "ticket_code" | "fechaIngreso">) => Promise<void>;
   loadRepairs: () => Promise<void>;
   loadRepairById: (id: string) => Promise<void>;
   deleteRepair: (id: string) => Promise<void>;
@@ -18,8 +19,6 @@ interface RepairsState {
 }
 
 export const userRepairsState = create<RepairsState>((set) => ({
-  clients: [],
-  products: [],
   repairById: null,
   repairs: [],
   loading: false,
@@ -46,9 +45,12 @@ export const userRepairsState = create<RepairsState>((set) => ({
     }
   },
 
-  addRepair: async (repair: Omit<Repair, "id">) => {
+  addRepair: async (repair: Omit<Repair, "id" | "owner_id" | "ticket_code" | "fechaIngreso">) => {
     try {
-      const newRepair = await api.postRepairs(repair);
+      const { user } = useAuthStore.getState();
+      if (!user) throw new Error("No hay sesión activa");
+      
+      const newRepair = await api.postRepairs({ ...repair, owner_id: user.id });
       set((state) => ({ repairs: [...state.repairs, newRepair] }));
     } catch (error) {
       set({ error: "Error al agregar la reparación" });

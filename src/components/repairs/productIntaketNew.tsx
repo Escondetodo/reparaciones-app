@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
 import clsx from "clsx";
 import { type SubmitHandler, Controller, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -17,7 +16,6 @@ import Button from "../ui/button";
 import Icon from "../ui/icon";
 
 export default function ProductIntaketNew() {
-  const loading = userRepairsState((state) => state.loading);
   const addRepair = userRepairsState((state) => state.addRepair);
   const loadRepairs = userRepairsState((state) => state.loadRepairs);
 
@@ -47,14 +45,11 @@ export default function ProductIntaketNew() {
   const onSubmit: SubmitHandler<RepairFormValues> = (data) => {
     addRepair({
       ...data,
-      fechaIngreso: new Date().toISOString(),
     });
     reset();
     setShowToast(true);
     setTimeout(() => setShowToast(false), 10000);
   };
-
-  const navigateTo = useNavigate();
 
   useEffect(() => {
     loadRepairs();

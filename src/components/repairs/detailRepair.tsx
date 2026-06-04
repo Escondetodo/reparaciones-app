@@ -42,7 +42,7 @@ export default function DetailRepair() {
           align="left"
           fontWeight="bold"
         >
-          Ticket de Reparación: {repairId}
+          Ticket de Reparación: {repairById?.ticket_code ?? repairId}
         </Text>
       </div>
       <div className="grid grid-cols-1 md:grid-cols-12 gap-6">

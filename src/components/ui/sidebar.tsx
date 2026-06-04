@@ -1,7 +1,5 @@
 import { useAuthStore } from "../../store/auth";
-import clsx from "clsx";
-import type { ReactNode } from "react";
-import Icon, { type IconName } from "./icon";
+import Icon from "./icon";
 import Button from "./button";
 import Alert from "./Alert";
 
@@ -9,7 +7,7 @@ interface PaginationProps {
   className?: string;
 }
 
-const Pagination = ({ className }: PaginationProps) => {
+const Pagination = (_props: PaginationProps) => {
   const logout = useAuthStore((state) => state.logout);
   const error = useAuthStore((state) => state.error);
   const loading = useAuthStore((state) => state.loading);
