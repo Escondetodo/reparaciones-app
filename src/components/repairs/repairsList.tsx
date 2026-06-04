@@ -23,7 +23,7 @@ const RepairsList = () => {
     loadRepairs();
   }, [loadRepairs]);
 
-  const typeStateRepair = [
+  const typeStateRepair: { nameIcon: import("../ui/icon").IconName; title: string; className: string; value: number }[] = [
     {
       nameIcon: "ChartColumnBig",
       title: "Total",

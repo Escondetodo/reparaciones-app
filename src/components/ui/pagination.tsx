@@ -12,9 +12,7 @@ interface PaginationProps {
 }
 
 const Pagination = ({
-  className,
   repairs,
-  repairsPaginated,
   itemsPerPage,
   totalPages,
   currentPage,

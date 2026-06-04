@@ -28,6 +28,10 @@ export const traducirError = (mensaje: string): string => {
         "Email not confirmed": "Email no confirmado",
         "User already registered": "Este email ya está registrado",
         "Rate limit exceeded": "Demasiados intentos, esperá un momento",
+        "42501": "No tenés permiso para acceder a esta reparación",
+        "23505": "El código de ticket ya existe. Intentalo de nuevo.",
+        "PGRST116": "No se encontró ninguna reparación con ese ticket",
+        "23503": "El usuario referenciado no existe",
     }
-    return errores[mensaje] || "Error al iniciar sesion"
+    return errores[mensaje] || "Error al procesar la reparación"
 }

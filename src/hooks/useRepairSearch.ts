@@ -1,12 +1,12 @@
 import { useState } from "react";
 import { userRepairsState } from "../store/repairs";
 import { formatDate } from "../utils/helpers";
+import { getRepairByTicket } from "../services/repairsApi";
 
 export const useRepairSearch = () => {
   const [ticketId, setTicketId] = useState("");
 
-  const loading = userRepairsState((state) => state.loading);
-  const loadRepairById = userRepairsState((state) => state.loadRepairById);
+  const loading = userRepairsState((state) => state.loading);;
   const repairById = userRepairsState((state) => state.repairById);
   const clearRepairById = userRepairsState((state) => state.clearRepairById);
   const error = userRepairsState((state) => state.error);
@@ -36,10 +36,16 @@ export const useRepairSearch = () => {
     setTicketId(value);
   };
 
-  const handleLoadRepairById = () => {
+const handleLoadRepairById = async () => {
     if (!ticketId.trim()) return;
-    loadRepairById(ticketId);
-  };
+    try {
+      userRepairsState.setState({ loading: true, error: null });
+      const repair = await getRepairByTicket(ticketId);
+      userRepairsState.setState({ repairById: repair, loading: false });
+    } catch (error) {
+      userRepairsState.setState({ error: "No se encontró esa reparación", loading: false });
+    }
+};
 
   return {
     ticketId,

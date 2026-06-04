@@ -9,7 +9,7 @@ Sistema de gestión de reparaciones técnicas. Aplicación web para administrar 
 - **Estado:** Zustand 5
 - **Formularios:** React Hook Form 7 + Zod 4
 - **Ruteo:** React Router DOM 7
-- **Backend:** Supabase (Auth + futura DB)
+- **Backend:** Supabase (Auth + DB)
 
 ## Requisitos
 
@@ -30,11 +30,7 @@ pnpm install
 pnpm dev
 ```
 
-El servidor de mock API para datos de reparaciones (json-server) sigue disponible en `server/`:
-
-```bash
-pnpm dlx json-server server/db.json --port 3001
-```
+> **Nota:** json-server está deprecado. Los datos de reparaciones ahora se almacenan en Supabase DB. El archivo `server/db.json` se mantiene como referencia histórica. Si necesitás migrar datos localmente, usá el seed SQL en `supabase/sql/0002_repairs_seed.sql`.
 
 ## Scripts
 

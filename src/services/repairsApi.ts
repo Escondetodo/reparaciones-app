@@ -1,14 +1,15 @@
 // ============================================
-// API SERVICE - Comunicación con el servidor
+// API SERVICE - Comunicación con Supabase
 // ============================================
 
-const API_URL = "http://localhost:3001";
+import { supabase } from "./supabase"
 
 export type EstadoRepair = "analisis" | "proceso" | "finalizado";
 
-// Definimos la interfaz (ya la tenés en tu código)
 export interface Repair {
   id: string;
+  owner_id: string;
+  ticket_code: string;
   nombreCliente: string;
   apellidoCliente: string;
   telefonoCliente: string;
@@ -22,95 +23,92 @@ export interface Repair {
   observacionesTecnicas: string;
 }
 
-// ============================================
-// FUNCIÓN 4: Crear una nueva reparación
-// ============================================
-
-export const postRepairs = async (
-  repair: Omit<Repair, "id">,
-): Promise<Repair> => {
-  const response = await fetch(`${API_URL}/repairs`, {
-    method: "POST",
-    headers: { "Content-Type": `application/json` },
-    body: JSON.stringify(repair),
+// Obtener todas las reparaciones del usuario logueado
+export const getRepairs = async (): Promise<Repair[]> => {
+  const { data, error } = await supabase.from("repairs").select("*");
+  if (error) throw new Error("Error al obtener reparaciones");
+  const updated = data?.map((item) => {
+    return { ...item, precioPresupuestado: String(item.precioPresupuestado) };
   });
+  
+  return updated as Repair[];
+};
 
-  if (!response.ok) {
+// Obtener UNA reparación por ID (uuid)
+export const getRepairById = async (id: string): Promise<Repair | null> => {
+  const { data, error } = await supabase
+    .from("repairs")
+    .select("*")
+    .eq("id", id)
+    .maybeSingle();
+  if (error) {
+    throw new Error(`Error al obtener la reparación ${id}`);
+  }
+
+  if(!data) {
+    throw new Error(`No se encontró la reparación ${id}`);
+  }
+  //data.precioPresupuestado = String(data.precioPresupuestado);
+  if (data) {
+    return { ...data, precioPresupuestado: String(data.precioPresupuestado) };
+  }
+
+  return data as Repair;
+};
+
+//Crear por ticket para cliente
+export const getRepairByTicket = async (ticketCode: string): Promise<Repair | null> => {
+  const { data, error } = await supabase.rpc('get_repair_by_ticket', { t: ticketCode });
+  if (error) throw new Error(`Error al obtener la reparación ${ticketCode}`);
+  if(!data) return null;
+  return { ...data, precioPresupuestado: String(data.precioPresupuestado) };
+}
+
+// Crear una nueva reparación
+export const postRepairs = async (
+  repair: Omit<Repair, "id" | "ticket_code" | "fechaIngreso">,
+): Promise<Repair> => {
+  const { data, error } = await supabase
+    .from("repairs")
+    .insert([repair])
+    .select()
+    .single();
+  if (error) {
     throw new Error("Error al crear la reparación");
   }
-
-  return response.json();
-};
-
-// ============================================
-// FUNCIÓN 5: Eliminar una reparación
-// ============================================
-export const deleteRepair = async (id: string) => {
-  const response = await fetch(`${API_URL}/repairs/${id}`, {
-    method: "DELETE",
-  });
-
-  if (!response.ok) {
-    throw new Error("Error al eliminar la reparación");
-  }
-};
-
-// ============================================
-// FUNCIÓN 1: Obtener todas las reparaciones
-// ============================================
-export const getRepairs = async (): Promise<Repair[]> => {
-  const response = await fetch(`${API_URL}/repairs`);
-
-  if (!response.ok) {
-    throw new Error("Error al obtener reparaciones");
+  if (data) {
+    return { ...data, precioPresupuestado: String(data.precioPresupuestado) };
   }
 
-  return response.json();
+  return data as Repair;
 };
 
-// ============================================
-// FUNCIÓN 5: Actualizar una reparación
-// ============================================
-
+// Actualizar una reparación existente
 export const updateRepair = async (
   id: string,
   repair: Omit<Repair, "id">,
 ): Promise<Repair> => {
-  const response = await fetch(`${API_URL}/repairs/${id}`, {
-    method: "PUT",
-    headers: { "Content-Type": `application/json` },
-    body: JSON.stringify(repair),
-  });
+  const { data, error } = await supabase
+    .from("repairs")
+    .update(repair)
+    .eq("id", id)
+    .select()
+    .single();
 
-  if (!response.ok) {
-    throw new Error("Error al actualizar la reparación");
+  if (error) throw new Error("Error al actualizar la reparación");
+
+  if (data) {
+    return { ...data, precioPresupuestado: String(data.precioPresupuestado) };
   }
 
-  return response.json();
+  return data as Repair;
 };
 
-// ============================================
-// FUNCIÓN 2: Obtener UNA reparación por ID
-// ============================================
-export const getRepairById = async (id: string): Promise<Repair> => {
-  const response = await fetch(`${API_URL}/repairs/${id}`);
+// Eliminar una reparación
+export const deleteRepair = async (id: string) => {
+  const { error } = await supabase.from("repairs").delete().eq("id", id);
 
-  if (!response.ok) {
-    throw new Error(`Error al obtener la reparación ${id}`);
+  if (error) {
+    throw new Error("Error al eliminar la reparación");
   }
-
-  return response.json();
-};
-
-// ============================================
-// FUNCIÓN 3: Filtrar por estado
-// ============================================
-export const getRepairsByStatus = async (estado: string): Promise<Repair[]> => {
-  const response = await fetch(`${API_URL}/repairs?estado=${estado}`);
-
-  if (!response.ok) {
-    throw new Error("Error al filtrar reparaciones");
-  }
-
-  return response.json();
 };

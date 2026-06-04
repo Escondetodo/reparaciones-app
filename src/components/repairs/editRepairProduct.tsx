@@ -1,4 +1,4 @@
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { userRepairsState } from "../../store/repairs";
 import { useEffect, useState } from "react";
 import { stateOptions } from "../../utils/constants";
@@ -32,7 +32,6 @@ const EditRepairProduct = () => {
   }>({ show: false, type: null });
 
   const { repairId } = useParams();
-  const navigate = useNavigate();
 
 
 
@@ -87,6 +86,13 @@ const EditRepairProduct = () => {
 
   return (
     <div>
+      {repairById?.ticket_code && (
+        <div className="mb-4 px-1">
+          <Text as="span" size="sm" color="text-teal-600" fontWeight="bold">
+            Ticket: {repairById.ticket_code}
+          </Text>
+        </div>
+      )}
       <form
         onSubmit={handleSubmit(onSubmit)}
         className={clsx("text-on-surface antialiased pb-2", {

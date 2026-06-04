@@ -1,0 +1,60 @@
+---
+
+colors:
+  brandPurple: "#5E00ED"   # El violeta vibrante del lado izquierdo
+  brandRed: "#D80016"      # El rojo brillante de la parte inferior/central
+  brandDarkRed: "#600E13"  # El rojo oscuro/granate de la parte superior
+  brandLime: "#B1EB0C"     # El verde lima/neón de la derecha
+  brandGreen: "#08A845"    # El verde de la esquina superior derecha
+  background: "#111111"    # Fondo oscuro profundo para los márgenes
+  surface: "#FFFFFF"       # Blanco puro para el "26" y tarjetas de contenido
+  accent: "#C7A246"        # Dorado extraído del trofeo
+  textPrimary: "#FFFFFF"   # Texto sobre fondos oscuros o de color
+  textDark: "#111111"      # Texto para leerse sobre el blanco (surface)
+typography:
+  fontFamily: "Inter, system-ui, sans-serif"
+  baseSize: "16px"
+  headingWeight: "800"
+breakpoints:
+  mobile: "320px"
+  tablet: "768px"
+  desktop: "1024px"
+  wide: "1440px"
+spacing:
+  sm: "8px"
+  md: "16px"
+  lg: "24px"
+  xl: "32px"
+  xxl: "64px"
+radii:
+  none: "0px"
+  base: "12px"
+  pill: "9999px"
+---
+
+# Overview
+Sistema de diseño basado en la paleta dinámica y vibrante de la Copa Mundial de la FIFA 2026. Se aleja de los colores tradicionales de las banderas para adoptar una estética moderna, audaz y de alto contraste mediante bloques de color superpuestos.
+
+## Colors & Backgrounds
+- **Fondos Complejos:** Para emular el fondo de la imagen oficial, se pueden utilizar fondos con gradientes o formas SVG superpuestas combinando `{colors.brandPurple}`, `{colors.brandRed}`, `{colors.brandDarkRed}`, `{colors.brandLime}` y `{colors.brandGreen}`.
+- **Surface:** Todo el contenido legible (como tarjetas, contenedores de noticias o tablas de posiciones) debe ir dentro de contenedores blancos `{colors.surface}` para lograr el mismo contraste que tiene el número "26" gigante.
+- **Accent:** El dorado `{colors.accent}` se debe utilizar de manera muy minimalista, exclusivamente para resaltar elementos premium (como botones de "Comprar Entradas", VIP o el ícono del trofeo).
+
+## Typography
+- Uso intensivo de tipografía pesada `{typography.headingWeight}` para los encabezados. 
+- Al escribir texto dentro de las tarjetas blancas (`surface`), asegúrate de utilizar el color `{colors.textDark}` para mantener la accesibilidad.
+
+## Shapes & Containers
+- A diferencia del logo rígido, los contenedores de la interfaz de usuario que flotan sobre este fondo tan llamativo deben tener bordes suaves (`{radii.base}`) para no saturar la vista.
+- Los botones principales deben usar `{radii.pill}` y rellenarse con alguno de los colores vibrantes de la marca (preferiblemente el `brandPurple` o `brandGreen`) dependiendo de la acción.
+
+## Layout & Responsiveness (Mobile-First)
+- **Base (Mobile):** Todo el diseño base y el código CSS por defecto se aplica a pantallas pequeñas (menores a `{breakpoints.tablet}`). El layout debe ser de una sola columna fluida.
+- **Escalamiento a Desktop:** A partir de `{breakpoints.desktop}`, la interfaz debe aprovechar el espacio extra. Las listas apiladas deben convertirse en cuadrículas (CSS Grid o Flexbox) de 2 o 3 columnas.
+- **Navegación:** En móvil, usar menú hamburguesa o barra de navegación inferior. En `{breakpoints.desktop}`, expandir a una barra lateral (Sidebar) visible o un menú superior completo.
+Priorizar áreas táctiles grandes (mínimo 44px de alto para botones) y navegación adaptada para el uso con el pulgar.
+
+## Do's and Don'ts
+- **DO:** Usar el blanco (`surface`) como "respiro" visual para no saturar la vista con los colores vibrantes del fondo.
+- **DO:** Empezar siempre maquetando la vista "App/Mobile" antes de proponer cualquier adaptación para pantallas grandes.
+- **DON'T:** No crear tablas horizontales complejas que requieran scroll horizontal en pantallas móviles; adaptarlas a vistas de tarjetas (cards) apiladas.
