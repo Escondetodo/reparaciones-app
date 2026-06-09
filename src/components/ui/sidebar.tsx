@@ -41,7 +41,7 @@ const Sidebar = ({ className }: SidebarProps) => {
   const handleLogout = async () => {
     try {
       await logout();
-    } catch (error) {}
+    } catch { /* error already handled by auth store */ }
   };
 
   return (

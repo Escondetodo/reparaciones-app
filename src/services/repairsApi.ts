@@ -103,6 +103,7 @@ export const updateRepair = async (
   repair: Omit<Repair, "id">,
 ): Promise<Repair> => {
   // owner_id, ticket_code, fechaIngreso son generados por la DB, no se mandan en UPDATE
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const { owner_id, ticket_code, fechaIngreso, ...dbRepair } = repair;
   const { data, error } = await supabase
     .from("repairs")

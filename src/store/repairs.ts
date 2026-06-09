@@ -30,7 +30,7 @@ export const userRepairsState = create<RepairsState>((set) => ({
     try {
       const repairs = await api.getRepairs();
       set({ repairs, loading: false });
-    } catch (error) {
+    } catch {
       set({ error: "Error al cargar las reparaciones", loading: false });
     }
   },
@@ -40,7 +40,7 @@ export const userRepairsState = create<RepairsState>((set) => ({
     try {
       const repairById = await api.getRepairById(id);
       set({ repairById, loading: false });
-    } catch (error) {
+    } catch {
       set({ error: "Error al cargar la reparación", loading: false });
     }
   },
@@ -52,7 +52,7 @@ export const userRepairsState = create<RepairsState>((set) => ({
       
       const newRepair = await api.postRepairs({ ...repair, owner_id: user.id });
       set((state) => ({ repairs: [...state.repairs, newRepair] }));
-    } catch (error) {
+    } catch {
       set({ error: "Error al agregar la reparación" });
     }
   },
@@ -63,7 +63,7 @@ export const userRepairsState = create<RepairsState>((set) => ({
       set((state) => ({
         repairs: state.repairs.filter((repair) => repair.id !== id),
       }));
-    } catch (error) {
+    } catch {
       set({ error: "Error al eliminar la reparación" });
     }
   },

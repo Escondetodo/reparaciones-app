@@ -18,7 +18,6 @@ const RepairsTableView = ({
   filteredRepairs,
   handleEditRepairClick,
 }: DesktopRepairsTableProps) => {
-  //TODO: Agregar los estilos de Tailwind
   if (loading) {
     return (
       <div className="flex items-center gap-3 justify-center p-4">

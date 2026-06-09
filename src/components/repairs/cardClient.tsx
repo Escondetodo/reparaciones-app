@@ -3,6 +3,7 @@ import Icon from "../ui/icon";
 import CustomInput from "../ui/customInput";
 import {
   type Control,
+  type FieldError,
   type FieldErrors,
   type FieldValues,
   type Path,
@@ -42,7 +43,7 @@ export default function CardClient<T extends FieldValues & ClientFields>({
               label="Nombre"
               placeholder="Nombre"
               type="text"
-              error={errors?.nombreCliente as any}
+              error={errors?.nombreCliente as FieldError | undefined}
             />
             <CustomInput
               control={control}
@@ -50,7 +51,7 @@ export default function CardClient<T extends FieldValues & ClientFields>({
               label="Apellido"
               placeholder="Apellido"
               type="text"
-              error={errors?.apellidoCliente as any}
+              error={errors?.apellidoCliente as FieldError | undefined}
             />
           </div>
           <div className="flex flex-col gap-4">
@@ -60,7 +61,7 @@ export default function CardClient<T extends FieldValues & ClientFields>({
               label="Telefono"
               placeholder="Numero de telefono"
               type="text"
-              error={errors?.telefonoCliente as any}
+              error={errors?.telefonoCliente as FieldError | undefined}
             />
             <CustomInput
               control={control}
@@ -68,7 +69,7 @@ export default function CardClient<T extends FieldValues & ClientFields>({
               label="Email"
               placeholder="Email"
               type="text"
-              error={errors?.emailCliente as any}
+              error={errors?.emailCliente as FieldError | undefined}
             />
           </div>
         </div>

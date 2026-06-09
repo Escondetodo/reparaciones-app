@@ -77,7 +77,7 @@ const EditRepairProduct = () => {
         await updateRepair(repairId, repairToUpdate);
         // Si llegó hasta acá sin errores, fue un éxito
         setModalConfig({ show: true, type: "success" });
-      } catch (error) {
+      } catch {
         // Hubo un error en la base de datos
         setModalConfig({ show: true, type: "error" });
       }

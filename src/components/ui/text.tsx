@@ -1,23 +1,12 @@
 import clsx from "clsx";
 import type { ReactNode } from "react";
 
-const colors = {
-  "text-zinc-400": "text-zinc-400",
-  "text-zinc-500": "text-zinc-500",
-  "text-zinc-600": "text-zinc-600",
-  "text-zinc-700": "text-zinc-700",
-  "text-zinc-900": "text-zinc-900",
-  "text-red-500": "text-red-500",
-  "text-teal-600": "text-teal-600",
-  "text-primary": "text-primary",
-  "text-primary-dark": "text-primary-dark",
-  "text-white": "text-white",
-  "text-on-surface": "text-on-surface",
-  "text-on-surface-variant": "text-on-surface-variant",
-  "text-accent": "text-accent",
-  "text-secondary": "text-secondary",
-};
-export type ColorText = keyof typeof colors;
+export type ColorText =
+  | "text-zinc-400" | "text-zinc-500" | "text-zinc-600" | "text-zinc-700" | "text-zinc-900"
+  | "text-red-500" | "text-teal-600"
+  | "text-primary" | "text-primary-dark"
+  | "text-white" | "text-on-surface" | "text-on-surface-variant"
+  | "text-accent" | "text-secondary";
 
 interface TextProps extends React.HTMLAttributes<HTMLElement> {
   align?: "left" | "center" | "right";

@@ -49,7 +49,7 @@ const handleLoadRepairById = async () => {
       userRepairsState.setState({ repairById: null, loading: true, error: null });
       const repair = await getRepairByTicket(ticketId);
       userRepairsState.setState({ repairById: repair, loading: false });
-    } catch (error) {
+    } catch {
       userRepairsState.setState({ error: "No se encontró esa reparación", repairById: null, loading: false });
     }
 };
