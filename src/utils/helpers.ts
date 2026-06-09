@@ -28,6 +28,11 @@ export const traducirError = (mensaje: string): string => {
         "Email not confirmed": "Email no confirmado",
         "User already registered": "Este email ya está registrado",
         "Rate limit exceeded": "Demasiados intentos, esperá un momento",
+        // CÓDIGOS DE ERROR POSTGRES / PostgREST que agregué:
+        // 42501 — RLS policy bloqueó el acceso (no tenés permiso sobre esa fila)
+        // 23505 — unique_violation (el ticket_code ya existe, reintentar)
+        // PGRST116 — PostgREST: el registro no existe (ticket inválido)
+        // 23503 — foreign_key_violation (owner_id no existe en auth.users)
         "42501": "No tenés permiso para acceder a esta reparación",
         "23505": "El código de ticket ya existe. Intentalo de nuevo.",
         "PGRST116": "No se encontró ninguna reparación con ese ticket",

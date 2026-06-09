@@ -32,10 +32,21 @@ const Inicio = () => {
                 <Icon name="Wrench" className="text-white text-4xl" />
               </div>
             </div>
-            <Text as="h1" size="xl3" fontWeight="bold" color="text-primary">
+            <Text
+              as="h1"
+              size="xl3"
+              fontWeight="bold"
+              color="text-primary"
+              align="center"
+            >
               Administración de Reparaciones
             </Text>
-            <Text as="span" size="md" fontWeight="normal" color="text-on-surface">
+            <Text
+              as="span"
+              size="md"
+              fontWeight="normal"
+              color="text-on-surface"
+            >
               Bienvenido a TechRepair Administration. Selecciona tu tipo de
               acceso para continuar con la gestión técnica.
             </Text>

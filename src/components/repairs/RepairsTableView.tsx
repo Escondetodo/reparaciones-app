@@ -57,15 +57,15 @@ const RepairsTableView = ({
       {/* Vista Desktop */}
       <div className="hidden lg:block overflow-x-auto px-6">
         <ListInfo
-          columns={["ID", "Cliente", "Producto", "Ingreso", "Estado", "Accion"]}
+          columns={["Ticket", "Cliente", "Producto", "Ingreso", "Estado", "Accion"]}
         >
           {repairsPaginated.map((repair) => (
             <ListInfo.ListBody
               key={repair.id}
               onClick={() => handleEditRepairClick(repair)}
             >
-              <ListInfo.ListColumn className="text-slate-400">
-                {repair.id}
+              <ListInfo.ListColumn className="text-slate-400 font-mono text-xs">
+                {repair.ticket_code}
               </ListInfo.ListColumn>
               <ListInfo.ListColumn>{repair.nombreCliente}</ListInfo.ListColumn>
               <ListInfo.ListColumn>{repair.nombreProducto}</ListInfo.ListColumn>

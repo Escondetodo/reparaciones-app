@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { userRepairsState } from "../store/repairs";
 import { formatDate } from "../utils/helpers";
 import { getRepairByTicket } from "../services/repairsApi";
@@ -6,10 +6,16 @@ import { getRepairByTicket } from "../services/repairsApi";
 export const useRepairSearch = () => {
   const [ticketId, setTicketId] = useState("");
 
-  const loading = userRepairsState((state) => state.loading);;
+  const loading = userRepairsState((state) => state.loading);
   const repairById = userRepairsState((state) => state.repairById);
   const clearRepairById = userRepairsState((state) => state.clearRepairById);
   const error = userRepairsState((state) => state.error);
+
+  // Limpia el resultado anterior al montar el componente
+  // Evita que quede basura de búsquedas previstas (Zustand es global)
+  useEffect(() => {
+    clearRepairById();
+  }, []);
 
   // const formatDate = (dateString: string) => {
   //   const date = new Date(dateString);
@@ -39,11 +45,12 @@ export const useRepairSearch = () => {
 const handleLoadRepairById = async () => {
     if (!ticketId.trim()) return;
     try {
-      userRepairsState.setState({ loading: true, error: null });
+      // Limpia el resultado anterior antes de buscar uno nuevo
+      userRepairsState.setState({ repairById: null, loading: true, error: null });
       const repair = await getRepairByTicket(ticketId);
       userRepairsState.setState({ repairById: repair, loading: false });
     } catch (error) {
-      userRepairsState.setState({ error: "No se encontró esa reparación", loading: false });
+      userRepairsState.setState({ error: "No se encontró esa reparación", repairById: null, loading: false });
     }
 };
 

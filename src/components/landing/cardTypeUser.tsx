@@ -48,7 +48,8 @@ const CardTypeUser = ({
           as="h2"
           size="xl2"
           fontWeight="bold"
-          className={clsx("mb-3 tracking-tight", type === "User" && "text-[#3d4947]", type === "Admin" && "text-secondary-container")}
+          color={type === "User" ? "text-primary-dark" : "text-secondary"}
+          className="mb-3 tracking-tight"
           align="left"
         >
           {title}
@@ -56,7 +57,8 @@ const CardTypeUser = ({
         <Text
           as="p"
           size="md"
-          className={clsx("mb-8", type === "User" && "text-[#3d4947]", type === "Admin" && "text-secondary-container")}
+          color={type === "User" ? "text-primary-dark" : "text-secondary"}
+          className="mb-8"
           align="left"
         >
           {value}

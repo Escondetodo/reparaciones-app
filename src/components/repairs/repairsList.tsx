@@ -55,10 +55,9 @@ const RepairsList = () => {
     if (searchQuery === "") {
       return repair;
     } else {
-      const repairFilter =
-        repair.nombreCliente.toLowerCase().includes(query) ||
-        repair.nombreProducto.toLowerCase().includes(query);
-      return repairFilter;
+      const cliente = (repair.nombreCliente ?? "").toLowerCase();
+      const producto = (repair.nombreProducto ?? "").toLowerCase();
+      return cliente.includes(query) || producto.includes(query);
     }
   });
 

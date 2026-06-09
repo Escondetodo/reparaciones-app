@@ -6,23 +6,16 @@ interface NavbarMobileProps {
   className?: string;
 }
 
-const links: { label: string; icon: IconName; href: string }[] = [
-  { label: "Inicio", icon: "LayoutGrid", href: "/private/admin" },
-  {
-    label: "Pedidos",
-    icon: "FileChartColumnIncreasing",
-    href: "/private/reparacion/nueva",
-  },
-  {
-    label: "Reportes",
-    icon: "FileChartColumnIncreasing",
-    href: "/private/reparacion/:repairId",
-  },
-  {
-    label: "Ajustes",
-    icon: "Settings",
-    href: "/private/reparacion/editar/:repairId",
-  },
+interface NavLinkItem {
+  label: string;
+  icon: IconName;
+  href: string;
+  end?: boolean;
+}
+
+const links: NavLinkItem[] = [
+  { label: "Inicio",          icon: "LayoutGrid", href: "/private/admin",                  end: true  },
+  { label: "Nueva Reparación",icon: "CirclePlus", href: "/private/admin/reparacion/nueva"             },
 ];
 
 const NavbarMobile = ({ className }: NavbarMobileProps) => {
