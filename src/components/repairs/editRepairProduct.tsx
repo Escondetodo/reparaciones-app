@@ -39,7 +39,7 @@ const EditRepairProduct = () => {
     if (repairId) {
       loadRepairById(repairId);
     }
-  }, [repairId]);
+  }, [repairId, loadRepairById]);
 
   const {
     control,
@@ -145,6 +145,7 @@ const EditRepairProduct = () => {
                   name="precioPresupuestado"
                   type="number"
                   error={errors?.precioPresupuestado}
+                  prefix="$"
                 />
                 <Text
                   as="p"

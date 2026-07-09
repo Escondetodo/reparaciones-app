@@ -53,7 +53,7 @@ export default function ProductIntaketNew() {
 
   useEffect(() => {
     loadRepairs();
-  }, []);
+  }, [loadRepairs]);
 
   return (
     <>

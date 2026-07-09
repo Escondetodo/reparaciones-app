@@ -1,82 +1,68 @@
-import Icon from "../ui/icon";
-import Text from "../ui/text";
+import { useState } from "react";
 import Button from "../ui/button";
+import Text from "../ui/text";
 import LoginForm from "./LoginForm";
-import Footer from "../layout/footer";
+import RecoverForm from "./RecoverForm";
+import AuthLayout from "./AuthLayout";
 
 const Login = () => {
+  const [formMode, setFormMode] = useState<"login" | "forgot">("login");
+
+  const handleForgotPassword = () => {
+    setFormMode("forgot");
+  };
+
+  const handleBackToLogin = () => {
+    setFormMode("login");
+  };
+
   return (
-    <div className="flex items-center justify-center bg-background-light min-h-screen p-4 sm:p-8">
-      {/* <!-- Background Pattern Decoration --> */}
-      {/* <!-- Login Container --> */}
-      <main className="relative z-10 w-full max-w-md">
-        {/* <!-- Branding Header --> */}
-        <div className="text-center mb-10">
-          <div className="inline-flex items-center justify-center p-3 bg-secondary-container rounded-full mb-4">
-            <div className="flex items-center justify-center w-14 h-14 bg-primary-dark rounded-lg shadow-md shadow-black/20">
-              <Icon name="Wrench" className="text-white text-4xl" />
-            </div>
-          </div>
+    <AuthLayout
+      title={
+        formMode === "login"
+          ? "¡Bienvenido de nuevo, técnico!"
+          : "¿Olvidaste tu contraseña?"
+      }
+      subtitle={
+        formMode === "login"
+          ? "Accede al panel de control técnico"
+          : "No te preocupes... Ingresa tu email y te enviaremos un enlace para restablecer tu contraseña."
+      }
+      backButton={
+        formMode === "forgot" ? (
+          <Button
+            className="pl-0"
+            variant="ghost"
+            icon="ArrowLeft"
+            onClick={handleBackToLogin}
+          >
+            Volver al login
+          </Button>
+        ) : undefined
+      }
+    >
+      {formMode === "login" ? (
+        <LoginForm onSwitchToRecover={handleForgotPassword} />
+      ) : (
+        <RecoverForm />
+      )}
+      {formMode === "login" && (
+        <div className="mt-8 pt-8 border-t border-outline-variant/30 text-center">
           <Text
-            as="h1"
-            size="xl2"
-            fontWeight="bold"
-            color="text-primary"
+            as="span"
+            size="lg"
+            fontWeight="semibold"
+            color="text-zinc-700"
             align="center"
           >
-            Admin Reparaciones
+            ¿Eres cliente?
           </Text>
+          <Button icon="Search" size="md" variant="tertiary" fullWidth>
+            Verifica el estado de tu reparación
+          </Button>
         </div>
-        {/* <!-- Login Card --> */}
-        <div className="bg-white rounded-xl shadow-[0_32px_64px_-12px_rgba(0,106,97,0.08)] p-8 sm:p-10 transition-all duration-300">
-          <div className="mb-8">
-            <Text
-              as="span"
-              size="lg"
-              fontWeight="bold"
-              color="text-zinc-900"
-              align="left"
-            >
-              ¡Bienvenido de nuevo, técnico!
-            </Text>
-            <Text
-              as="span"
-              size="md"
-              fontWeight="semibold"
-              color="text-zinc-500"
-              align="left"
-            >
-              Accede al panel de control técnico
-            </Text>
-          </div>
-          <LoginForm />
-          {/* <!-- Secondary Actions --> */}
-          <div className="mt-8 pt-8 border-t border-outline-variant/30 text-center">
-            <Text
-              as="span"
-              size="lg"
-              fontWeight="semibold"
-              color="text-zinc-700"
-              align="center"
-            >
-              ¿No eres administrador?
-            </Text>
-            <Button icon="Search" size="md" variant="tertiary" fullWidth>
-              Client Status Check
-            </Button>
-          </div>
-        </div>
-        {/* <!-- System Footer --> */}
-        <Footer
-          align="center"
-          textLabel={
-            "© " +
-            new Date().getFullYear() +
-            " Technical Repair Administration. Todos los derechos reservados."
-          }
-        />
-      </main>
-    </div>
+      )}
+    </AuthLayout>
   );
 };
 

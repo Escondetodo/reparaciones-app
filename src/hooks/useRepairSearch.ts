@@ -15,7 +15,7 @@ export const useRepairSearch = () => {
   // Evita que quede basura de búsquedas previstas (Zustand es global)
   useEffect(() => {
     clearRepairById();
-  }, []);
+  }, [clearRepairById]);
 
   // const formatDate = (dateString: string) => {
   //   const date = new Date(dateString);

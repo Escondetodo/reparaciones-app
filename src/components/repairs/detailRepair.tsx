@@ -25,7 +25,7 @@ export default function DetailRepair() {
     if (repairId) {
       loadRepairById(repairId);
     }
-  }, [repairId]);
+  }, [repairId, loadRepairById]);
 
   const handleEditRepair = () => {
     setSelectedRepair(repairById);

@@ -24,3 +24,23 @@ export const loginSchema = z.object({
 });
 
 export type LoginFormValues = z.infer<typeof loginSchema>;
+
+export const forgotPasswordSchema = z.object({
+  email: z.email("Correo electrónico es obligatorio"),
+});
+
+export type ForgotPasswordFormValues = z.infer<typeof forgotPasswordSchema>;
+
+export const updatePasswordSchema = z.object({
+  password: z
+    .string()
+    .min(6, "La contraseña debe tener al menos 6 caracteres"),
+  confirmPassword: z
+    .string()
+    .min(6, "La contraseña debe tener al menos 6 caracteres"),
+}).refine((data) => data.password === data.confirmPassword, {
+  message: "Las contraseñas no coinciden",
+  path: ["confirmPassword"],
+});
+
+export type UpdatePasswordFormValues = z.infer<typeof updatePasswordSchema>;

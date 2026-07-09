@@ -8,7 +8,11 @@ import CustomInput from "../ui/customInput";
 import Button from "../ui/button";
 import Alert from "../ui/Alert";
 
-const LoginForm = () => {
+interface LoginFormProps {
+  onSwitchToRecover?: () => void;
+}
+
+const LoginForm = ({ onSwitchToRecover }: LoginFormProps) => {
   const {
     control,
     handleSubmit,
@@ -22,7 +26,6 @@ const LoginForm = () => {
   });
 
   const error = useAuthStore((state) => state.error);
-  //const loading = useAuthStore((state) => state.loading);
   const login = useAuthStore((state) => state.login);
   const [showPassword, setShowPassword] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -74,12 +77,14 @@ const LoginForm = () => {
           nameIcon="Eye"
           onIconClick={handleTogglePassword}
         />
-        <a
-          className="text-primary font-label text-sm font-semibold hover:underline decoration-2 underline-offset-4"
-          href="#"
+        <Button
+          size="sm"
+          variant="link"
+          onClick={onSwitchToRecover}
+          type="button"
         >
           ¿Olvidaste tu contraseña?
-        </a>
+        </Button>
       </div>
       <div className="flex items-center space-x-3 px-1">
         <div className="relative flex items-center h-5">

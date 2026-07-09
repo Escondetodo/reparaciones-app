@@ -46,6 +46,7 @@ export default function CardProduct({ control, errors }: CardProductProps) {
               placeholder="0.00"
               type="text"
               error={errors?.precioPresupuestado}
+              prefix="$"
             />
             <label className="w-full">
               <p className="text-xs text-left font-bold uppercase tracking-wider text-secondary mb-2">

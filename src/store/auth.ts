@@ -12,6 +12,8 @@ interface AuthState {
     logout:()=>Promise<void>;
     register:(email:string,password:string, nombre: string)=>Promise<void>;
     checkSession:()=>Promise<void>;
+    forgotPassword:(email:string)=>Promise<void>;
+    updatePassword:(password:string)=>Promise<void>;
 }
 
 export const useAuthStore = create<AuthState>((set)=>({
@@ -75,4 +77,34 @@ register: async(email:string,password:string,nombre: string)=>{
         set({error:messageError, loading:false})
     }
 },
+forgotPassword: async(email:string)=>{
+    set({loading:true, error:null})
+    try {
+         const response = await supabase.auth.resetPasswordForEmail(email, {
+            redirectTo: `${window.location.origin}/update-password`
+        })
+        if (response.error){
+            throw new Error(response.error.message)
+        }
+        set({loading:false, error:null})
+    } catch (error) {
+      const messageError = error instanceof Error ? traducirError(error.message) : "Error al enviar el link de recuperación";
+      set({error:messageError, loading:false})
+      throw Error(messageError)
+    }
+},
+updatePassword: async(password:string)=>{
+    set({loading:true, error:null})
+    try {
+        const response = await supabase.auth.updateUser({password})
+        if (response.error){
+            throw new Error(response.error.message)
+        }
+        set({loading:false, error:null})
+    } catch (error) {
+        const messageError = error instanceof Error ? traducirError(error.message) : "Error al actualizar la contraseña";
+        set({error:messageError, loading:false})
+        throw Error(messageError)
+    }
+},   
 }))

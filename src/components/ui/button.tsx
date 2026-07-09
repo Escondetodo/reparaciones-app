@@ -1,7 +1,13 @@
 import clsx from "clsx";
 import Icon, { type IconName } from "./icon";
 
-type ButtonVariant = "primary" | "secondary" | "tertiary" | "danger" | "ghost";
+type ButtonVariant =
+  | "primary"
+  | "secondary"
+  | "tertiary"
+  | "danger"
+  | "ghost"
+  | "link";
 type ButtonSize = "sm" | "md" | "lg";
 
 interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
@@ -33,6 +39,7 @@ const variantStyles: Record<ButtonVariant, string> = {
   danger: "bg-red-500 text-white hover:bg-red-600 active:scale-95",
   ghost:
     "bg-transparent text-slate-700 hover:bg-slate-100 dark:text-slate-300 dark:hover:bg-slate-800 active:scale-95",
+  link: "text-primary font-label font-semibold hover:underline decoration-2 underline-offset-4",
 };
 
 const sizeStyles: Record<ButtonSize, string> = {

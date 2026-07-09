@@ -20,6 +20,7 @@ interface CustomInputProps<T extends FieldValues> {
   value?: string | number;
   error?: FieldError;
   onIconClick?: () => void;
+  prefix?: string;
 }
 
 const CustomInput = <T extends FieldValues>({
@@ -29,6 +30,7 @@ const CustomInput = <T extends FieldValues>({
   placeholder,
   type,
   error,
+  prefix,
   ...props
 }: CustomInputProps<T>) => {
   return (
@@ -44,6 +46,7 @@ const CustomInput = <T extends FieldValues>({
           value={field.value}
           name={field.name}
           error={error?.message}
+          prefix={prefix}
           {...props}
         />
       )}

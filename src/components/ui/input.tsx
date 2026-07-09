@@ -14,6 +14,7 @@ interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
   labelPosition?: "inside" | "outside";
   error?: string;
   onIconClick?: () => void;
+  prefix?: string;
 }
 
 const Input = ({
@@ -26,6 +27,7 @@ const Input = ({
   name,
   labelPosition = "outside",
   error,
+  prefix,
   ...props
 }: InputProps) => {
   return (
@@ -69,6 +71,7 @@ const Input = ({
                 <Icon name={nameIcon} size={20} />
               </button>
             )}
+            {prefix && <span className="text-zinc-500 font-semibold">{prefix}</span>}
             <input
               id={name}
               aria-invalid={!!error}
