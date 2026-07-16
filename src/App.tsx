@@ -2,6 +2,7 @@ import { AppRouter } from "./AppRouter";
 import { useAuthStore } from "./store/auth";
 import { useEffect } from "react";
 import { supabase } from "./services/supabase";
+import ErrorBoundary from "./ErrorBoundary";
 
 function App() {
   const checkSession = useAuthStore((state) => state.checkSession);
@@ -20,7 +21,11 @@ function App() {
     return () => subscription.unsubscribe();
   }, [checkSession]);
 
-  return <AppRouter />;
+  return (
+    <ErrorBoundary>
+      <AppRouter />
+    </ErrorBoundary>
+  );
 }
 
 export default App;
