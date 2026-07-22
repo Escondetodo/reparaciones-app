@@ -1,5 +1,4 @@
 import clsx from "clsx";
-import { Link } from "react-router-dom";
 import { useState } from "react";
 import Modal from "./modal";
 import Button from "./button";
@@ -23,12 +22,6 @@ const Navbar = ({ className }: NavbarProps) => {
         >
           Contacto
         </button>
-        <Link
-          to="/registro"
-          className="bg-primary text-white px-6 py-2 rounded-lg font-bold active:scale-95 transition-transform"
-        >
-          Registrarse
-        </Link>
       </nav>
       {showContacto && (
         <Modal
